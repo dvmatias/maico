@@ -7,4 +7,5 @@ class SplashPresenter: BasePresenterImpl<SplashContract.View>(), SplashContract.
     override fun checkNetworkStatus() {
         // TODO check network status.
     }
+
 }

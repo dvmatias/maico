@@ -4,7 +4,8 @@ import com.matias.maico.screens.splash.SplashActivity
 import dagger.Subcomponent
 
 @Subcomponent(
-    modules = [PresentationModule::class, PresentersModule::class]
+    modules = [PresentationModule::class,
+        PresentersModule::class]
 )
 interface PresentationComponent {
 

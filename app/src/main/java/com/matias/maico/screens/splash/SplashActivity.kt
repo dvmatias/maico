@@ -7,14 +7,11 @@ import javax.inject.Inject
 
 class SplashActivity :BaseActivity(), SplashContract.View {
 
-    @Inject
-    lateinit var presenter: SplashPresenter
+    @Inject lateinit var presenter: SplashPresenter
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_splash)
-
-        // Add this Activity for injection.
         getPresentationComponent().inject(this)
 
         presenter.checkNetworkStatus()
