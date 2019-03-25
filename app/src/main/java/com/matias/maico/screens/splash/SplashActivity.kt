@@ -1,7 +1,8 @@
-package com.matias.maico
+package com.matias.maico.screens.splash
 
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
+import com.matias.maico.R
 
 class SplashActivity : AppCompatActivity() {
 
