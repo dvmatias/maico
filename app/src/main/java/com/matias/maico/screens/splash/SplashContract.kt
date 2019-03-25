@@ -17,5 +17,5 @@ interface SplashContract {
     interface Presenter: BasePresenter<View> {
         fun checkNetworkStatus() // Verify Internet connection status.
     }
-    
+
 }
