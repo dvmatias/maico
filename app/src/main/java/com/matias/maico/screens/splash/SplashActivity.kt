@@ -14,7 +14,7 @@ class SplashActivity :BaseActivity(), SplashContract.View {
         setContentView(R.layout.activity_splash)
         getPresentationComponent().inject(this)
 
-        presenter.checkNetworkStatus()
+        presenter.checkInternetConnectionStatus()
     }
 
     /*
@@ -33,7 +33,7 @@ class SplashActivity :BaseActivity(), SplashContract.View {
         TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
     }
 
-    override fun checkNetworkStatus() {
+    override fun checkInternetConnectionStatus() {
         TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
     }
 

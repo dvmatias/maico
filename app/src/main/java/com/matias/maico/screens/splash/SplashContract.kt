@@ -10,7 +10,7 @@ interface SplashContract {
         fun showLoading(show: Boolean) // Show loading view.
         fun askUserPermissionFineLocation()
         fun showNeedPermissionDialog()
-        fun checkNetworkStatus() // Ask presenter to check Internet connection status.
+        fun checkInternetConnectionStatus() // Ask presenter to check Internet connection status.
         fun showNoConnectionError() // Show error for no Internet connection status.
         fun gotToHomeScreen() // Go launch HomeActivity.
 
@@ -18,7 +18,7 @@ interface SplashContract {
 
     interface Presenter: BasePresenter<View> {
 
-        fun checkNetworkStatus() // Verify Internet connection status.
+        fun checkInternetConnectionStatus() // Verify Internet connection status.
 
     }
 
