@@ -12,7 +12,6 @@ class PresentationModule(view: BaseView,
                          fragmentManager: FragmentManager,
                          activity: Activity) {
 
-
     @Provides
     fun getActivity(): Activity = getActivity()
 

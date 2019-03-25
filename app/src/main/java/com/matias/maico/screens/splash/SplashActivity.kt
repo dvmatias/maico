@@ -1,14 +1,23 @@
 package com.matias.maico.screens.splash
 
 import android.os.Bundle
-import android.support.v7.app.AppCompatActivity
 import com.matias.maico.R
+import com.matias.maico.common.mvp.BaseActivity
+import javax.inject.Inject
 
-class SplashActivity : AppCompatActivity(), SplashContract.View {
+class SplashActivity :BaseActivity(), SplashContract.View {
+
+    @Inject
+    lateinit var presenter: SplashPresenter
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_splash)
+
+        // Add this Activity for injection.
+        getPresentationComponent().inject(this)
+
+        presenter.checkNetworkStatus()
     }
 
     /*
