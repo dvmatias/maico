@@ -4,6 +4,7 @@ import android.app.Application
 import com.matias.maico.common.dependencyinjection.application.ApplicationComponent
 import com.matias.maico.common.dependencyinjection.application.ApplicationModule
 import com.matias.maico.common.dependencyinjection.application.DaggerApplicationComponent
+import com.matias.maico.common.dependencyinjection.presentation.NetworkingModule
 
 class MyApplication : Application() {
 
@@ -20,6 +21,7 @@ class MyApplication : Application() {
         applicationComponent = DaggerApplicationComponent
             .builder()
             .applicationModule(ApplicationModule())
+            .networkingModule(NetworkingModule(applicationContext))
             .build()
     }
 

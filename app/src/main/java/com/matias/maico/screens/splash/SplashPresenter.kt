@@ -3,7 +3,7 @@ package com.matias.maico.screens.splash
 import android.util.Log
 import com.matias.maico.common.mvp.BasePresenterImpl
 
-class SplashPresenter(var checkNetworkStatusInteractor: CheckNetworkStatusInteractor)
+class SplashPresenter(private var checkNetworkStatusInteractor: CheckNetworkStatusInteractor)
     : BasePresenterImpl<SplashContract.View>(), SplashContract.Presenter, CheckNetworkStatusInteractor.Listener {
 
     override fun internetConnected() {
