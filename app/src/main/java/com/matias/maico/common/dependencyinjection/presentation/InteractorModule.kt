@@ -8,6 +8,7 @@ import dagger.Provides
 class InteractorModule {
 
     @Provides
-    fun getCheckNetworkStatusInteractor(): CheckNetworkStatusInteractor = CheckNetworkStatusInteractor()
+    fun getCheckNetworkStatusInteractor(): CheckNetworkStatusInteractor
+            = CheckNetworkStatusInteractor()
 
 }

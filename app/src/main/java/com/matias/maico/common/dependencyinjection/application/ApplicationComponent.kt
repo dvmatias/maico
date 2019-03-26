@@ -1,9 +1,6 @@
 package com.matias.maico.common.dependencyinjection.application
 
-import com.matias.maico.common.dependencyinjection.presentation.InteractorModule
-import com.matias.maico.common.dependencyinjection.presentation.PresentationComponent
-import com.matias.maico.common.dependencyinjection.presentation.PresentationModule
-import com.matias.maico.common.dependencyinjection.presentation.PresenterModule
+import com.matias.maico.common.dependencyinjection.presentation.*
 import dagger.Component
 import javax.inject.Singleton
 
@@ -11,6 +8,7 @@ import javax.inject.Singleton
 @Component(
     modules = [
         ApplicationModule::class,
+        NetworkingModule::class,
         PresenterModule::class,
         InteractorModule::class
     ]

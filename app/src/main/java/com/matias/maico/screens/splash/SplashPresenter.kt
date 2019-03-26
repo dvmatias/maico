@@ -3,21 +3,27 @@ package com.matias.maico.screens.splash
 import android.util.Log
 import com.matias.maico.common.mvp.BasePresenterImpl
 
-class SplashPresenter(private var checkNetworkStatusInteractor: CheckNetworkStatusInteractor)
+class SplashPresenter(var checkNetworkStatusInteractor: CheckNetworkStatusInteractor)
     : BasePresenterImpl<SplashContract.View>(), SplashContract.Presenter, CheckNetworkStatusInteractor.Listener {
 
     override fun internetConnected() {
-        Log.d("asdasd", "MABEL - Internet connected.")
+        showLoading(false)
+        Log.d("SplashPresenter", "MABEL - Internet connected.")
     }
 
     override fun internetNotConnected() {
-        Log.d("asdasd", "MABEL - Internet NOT connected.")
+        showLoading(false)
+        Log.d("SplashPresenter", "MABEL - Internet NOT connected.")
     }
 
     override fun checkInternetConnectionStatus() {
+        showLoading(true)
+        checkNetworkStatusInteractor.checkInternetConnectionStatus(this)
+    }
+
+    private fun showLoading(show: Boolean) {
         if (isBound) {
-            view?.showLoading(true)
-            checkNetworkStatusInteractor.checkInternetConnectionStatus(this)
+            view?.showLoading(show)
         }
     }
 }
