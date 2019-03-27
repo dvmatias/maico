@@ -8,15 +8,19 @@ import dagger.Module
 import dagger.Provides
 
 @Module
-class PresentationModule(view: BaseView,
-                         fragmentManager: FragmentManager,
-                         activity: Activity) {
-
-
-    @Provides
-    fun getActivity(): Activity = getActivity()
+class PresentationModule(
+    private var view: BaseView,
+    private var fragmentManager: FragmentManager,
+    private var activity: Activity
+) {
 
     @Provides
-    fun getContext(): Context = getActivity()
+    fun getActivity(): Activity = activity
+
+    @Provides
+    fun getContext(): Context = activity
+
+    @Provides
+    fun getView(): BaseView = view
 
 }
