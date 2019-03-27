@@ -1,19 +1,20 @@
 package com.matias.maico.screens.splash
 
-import android.util.Log
 import com.matias.maico.common.mvp.BasePresenterImpl
 
-class SplashPresenter(private var checkNetworkStatusInteractor: CheckNetworkStatusInteractor)
-    : BasePresenterImpl<SplashContract.View>(), SplashContract.Presenter, CheckNetworkStatusInteractor.Listener {
+class SplashPresenter(
+    v: SplashContract.View,
+    private var checkNetworkStatusInteractor: CheckNetworkStatusInteractor,
+    private var checkCredentialsInteractor: CheckCredentialsInteractor
+) : BasePresenterImpl<SplashContract.View>(), SplashContract.Presenter, CheckNetworkStatusInteractor.Listener,
+    CheckCredentialsInteractor.Listener {
 
-    override fun internetConnected() {
-        showLoading(false)
-        Log.d("SplashPresenter", "MABEL - Internet connected.")
+    init {
+        bind(v)
     }
 
-    override fun internetNotConnected() {
-        showLoading(false)
-        Log.d("SplashPresenter", "MABEL - Internet NOT connected.")
+    override fun checkCredentials() {
+        checkCredentialsInteractor.checkCredentials(this)
     }
 
     override fun checkInternetConnectionStatus() {
@@ -22,8 +23,32 @@ class SplashPresenter(private var checkNetworkStatusInteractor: CheckNetworkStat
     }
 
     private fun showLoading(show: Boolean) {
-        if (isBound) {
-            view?.showLoading(show)
-        }
+        this.view?.showLoading(show)
+
+    }
+
+    /*
+     * CheckCredentialsInteractor interface implementation.
+     */
+
+    override fun credentialsValid() {
+        this.view?.gotToHomeScreen()
+    }
+
+    override fun credentialsInvalid() {
+        this.view?.goToValidateCredentialsScreen()
+    }
+
+    /*
+     * CheckNetworkStatusInteractor interface implementation.
+     */
+
+    override fun internetConnected() {
+        this.view?.checkCredentials()
+    }
+
+    override fun internetNotConnected() {
+        showLoading(false)
+        this.view?.showNoConnectionErrorDialog()
     }
 }

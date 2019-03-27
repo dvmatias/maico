@@ -1,4 +1,4 @@
-package com.matias.maico.common.dependencyinjection.presentation
+package com.matias.maico.common.dependencyinjection.application
 
 import android.content.Context
 import com.matias.maico.common.dependencyinjection.utils.InternetConnectivityManager

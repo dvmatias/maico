@@ -7,17 +7,20 @@ interface SplashContract {
 
     interface View: BaseView {
 
-        fun showLoading(show: Boolean) // Show loading view.
         fun askUserPermissionFineLocation()
-        fun showNeedPermissionDialog()
+        fun checkCredentials() // Verify if the user his logged.
         fun checkInternetConnectionStatus() // Ask presenter to check Internet connection status.
-        fun showNoConnectionError() // Show error for no Internet connection status.
-        fun gotToHomeScreen() // Go launch HomeActivity.
+        fun gotToHomeScreen() // Launch HomeActivity.
+        fun goToValidateCredentialsScreen() // Launch ValidateCredentialsActivity.
+        fun showLoading(show: Boolean) // Show loading view.
+        fun showNeedPermissionDialog()
+        fun showNoConnectionErrorDialog() // Show error for no Internet connection status.
 
     }
 
     interface Presenter: BasePresenter<View> {
 
+        fun checkCredentials() // Verify if the user his logged.
         fun checkInternetConnectionStatus() // Verify Internet connection status.
 
     }

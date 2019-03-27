@@ -20,4 +20,7 @@ class PresentationModule(
     @Provides
     fun getContext(): Context = activity
 
+    @Provides
+    fun getView(): BaseView = view
+
 }

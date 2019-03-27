@@ -5,7 +5,9 @@ import dagger.Subcomponent
 
 @Subcomponent(
     modules = [
-        PresentationModule::class
+        PresentationModule::class,
+        PresenterModule::class,
+        InteractorModule::class
     ]
 )
 interface PresentationComponent {
