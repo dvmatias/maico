@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="color_primary">#419300</color>
-    <color name="color_primary_dark">#006400</color>
-    <color name="color_primary_light">#75c43f</color>
+    <color name="color_primary">#ff8f1f</color>
+    <color name="color_primary_dark">#c66000</color>
+    <color name="color_primary_light">#ffc054</color>
     <color name="color_accent">#ff9800</color>
 
-    <color name="notification_bar">@color/color_primary_dark</color>
+    <color name="notification_bar">@color/color_primary_light</color>
 </resources>

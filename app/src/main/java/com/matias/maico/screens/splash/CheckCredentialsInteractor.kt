@@ -1,6 +1,8 @@
 package com.matias.maico.screens.splash
 
-class CheckCredentialsInteractor {
+import com.matias.maico.common.managers.SharedPreferencesManager
+
+class CheckCredentialsInteractor(private var sharedPreferencesManager: SharedPreferencesManager) {
 
     interface Listener {
         fun credentialsValid()

@@ -24,7 +24,6 @@ class SplashPresenter(
 
     private fun showLoading(show: Boolean) {
         this.view?.showLoading(show)
-
     }
 
     /*
