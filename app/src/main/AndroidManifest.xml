@@ -28,7 +28,7 @@
 
         <!-- Validate Credentials Activity -->
         <activity
-            android:name=".screens.validatecredentials.ValidateCredentials"
+            android:name=".screens.validatecredentials.ValidateCredentialsActivity"
             android:theme="@style/NoActionBar">
         </activity>
     </application>
