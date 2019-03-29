@@ -1,13 +1,14 @@
 package com.matias.maico.screens.splash
 
+import android.app.ActivityOptions
+import android.content.Intent
 import android.os.Bundle
 import android.util.Log
-import android.view.View
 import com.matias.maico.R
 import com.matias.maico.common.mvp.BaseActivity
-import javax.inject.Inject
-
+import com.matias.maico.screens.validatecredentials.ValidateCredentialsActivity
 import kotlinx.android.synthetic.main.activity_splash.*
+import javax.inject.Inject
 
 class SplashActivity : BaseActivity(), SplashContract.View {
 
@@ -23,10 +24,11 @@ class SplashActivity : BaseActivity(), SplashContract.View {
         setContentView(R.layout.activity_splash)
         getPresentationComponent().inject(this)
 
-        setup()
+
     }
 
-    private fun setup() {
+    override fun onResume() {
+        super.onResume()
         presenter.checkInternetConnectionStatus()
     }
 
@@ -51,7 +53,9 @@ class SplashActivity : BaseActivity(), SplashContract.View {
     }
 
     override fun goToValidateCredentialsScreen() {
-        Log.d(TAG, "MABEL - Go to ValidateCredentialsScreen.")
+        val intent = Intent(this, ValidateCredentialsActivity::class.java)
+        startActivity(intent)
+        finish()
     }
 
     override fun showNeedPermissionDialog() {

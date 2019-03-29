@@ -1,6 +1,6 @@
 package com.matias.maico.screens.splash
 
-import android.util.Log
+import android.os.Handler
 import com.matias.maico.common.dependencyinjection.utils.InternetConnectivityManager
 
 class CheckNetworkStatusInteractor(private var internetConnectivityManager: InternetConnectivityManager) {
@@ -11,10 +11,10 @@ class CheckNetworkStatusInteractor(private var internetConnectivityManager: Inte
     }
 
     fun checkInternetConnectionStatus(listener: Listener) {
-        Log.d("CheckNetworkStatusIn", "MABEL - Interactor method called.")
-
-        if (internetConnectivityManager.checkInternetConnectionStatus()) listener.internetConnected()
-        else listener.internetNotConnected()
+        Handler().postDelayed({
+            if (internetConnectivityManager.checkInternetConnectionStatus()) listener.internetConnected()
+            else listener.internetNotConnected()
+        }, 750)
     }
 
 }

@@ -10,7 +10,8 @@ class CheckCredentialsInteractor(private var sharedPreferencesManager: SharedPre
     }
 
     fun checkCredentials(listener: Listener) {
-        // TODO Check for valid credentials.
+        listener.credentialsInvalid()
+        // TODO check real credentials.
     }
 
 }
