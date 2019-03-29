@@ -1,6 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="colorPrimary">#008577</color>
-    <color name="colorPrimaryDark">#00574B</color>
-    <color name="colorAccent">#D81B60</color>
+    <color name="color_primary">#FF9800</color>
+    <color name="color_primary_dark">#C66900</color>
+    <color name="color_primary_light">#FFC947</color>
+    <color name="color_accent">#FF9800</color>
+
+    <!-- Generals -->
+    <color name="color_white">#FFFFFF</color>
+
+    <!-- Activity Splash -->
+    <color name="notification_bar_activity_splash">@color/color_primary</color>
+    <color name="background_activity_splash">@color/notification_bar_activity_splash</color>
 </resources>

@@ -18,13 +18,7 @@ class SplashPresenter(
     }
 
     override fun checkInternetConnectionStatus() {
-        showLoading(true)
         checkNetworkStatusInteractor.checkInternetConnectionStatus(this)
-    }
-
-    private fun showLoading(show: Boolean) {
-        this.view?.showLoading(show)
-
     }
 
     /*
@@ -48,7 +42,6 @@ class SplashPresenter(
     }
 
     override fun internetNotConnected() {
-        showLoading(false)
         this.view?.showNoConnectionErrorDialog()
     }
 }

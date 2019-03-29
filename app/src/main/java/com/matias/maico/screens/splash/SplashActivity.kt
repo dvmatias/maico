@@ -2,11 +2,14 @@ package com.matias.maico.screens.splash
 
 import android.os.Bundle
 import android.util.Log
+import android.view.View
 import com.matias.maico.R
 import com.matias.maico.common.mvp.BaseActivity
 import javax.inject.Inject
 
-class SplashActivity :BaseActivity(), SplashContract.View {
+import kotlinx.android.synthetic.main.activity_splash.*
+
+class SplashActivity : BaseActivity(), SplashContract.View {
 
     @Inject lateinit var presenter: SplashPresenter
 
@@ -49,10 +52,6 @@ class SplashActivity :BaseActivity(), SplashContract.View {
 
     override fun goToValidateCredentialsScreen() {
         Log.d(TAG, "MABEL - Go to ValidateCredentialsScreen.")
-    }
-
-    override fun showLoading(show: Boolean) {
-        Log.d(TAG, "MABEL - Show loading = $show.")
     }
 
     override fun showNeedPermissionDialog() {
