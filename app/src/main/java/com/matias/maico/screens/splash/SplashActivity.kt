@@ -53,10 +53,8 @@ class SplashActivity : BaseActivity(), SplashContract.View {
     }
 
     override fun goToValidateCredentialsScreen() {
-        val activityOptions = ActivityOptions.makeSceneTransitionAnimation(
-                this, iv_logo, "logo")
         val intent = Intent(this, ValidateCredentialsActivity::class.java)
-        startActivity(intent, activityOptions.toBundle())
+        startActivity(intent)
         finish()
     }
 

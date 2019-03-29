@@ -1,3 +1,7 @@
 <resources>
     <string name="app_name">Maico</string>
+
+    <string name="title_validate_credentials_screen_enter_phone">Write you phone number</string>
+
+
 </resources>
