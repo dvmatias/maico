@@ -25,10 +25,11 @@ class SplashActivity : BaseActivity(), SplashContract.View {
         setContentView(R.layout.activity_splash)
         getPresentationComponent().inject(this)
 
-        setup()
+
     }
 
-    private fun setup() {
+    override fun onResume() {
+        super.onResume()
         presenter.checkInternetConnectionStatus()
     }
 
