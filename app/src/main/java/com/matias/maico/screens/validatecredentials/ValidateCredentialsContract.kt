@@ -7,7 +7,6 @@ interface ValidateCredentialsContract {
 
     interface View: BaseView {
 
-        fun animateUserPhoneView()
         fun goToChooseCountryScreen() // Launch ChooseCountryActivity.
         fun goToHomeScreen() // Launch HomeScreenActivity.
         fun setCountry(countryName: String, countryFlagUrl: String, countryPrefix: String) // set selected (or default) country.

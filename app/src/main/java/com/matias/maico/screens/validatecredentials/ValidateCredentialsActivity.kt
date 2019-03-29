@@ -23,10 +23,6 @@ class ValidateCredentialsActivity : BaseActivity(), ValidateCredentialsContract.
      * MVP - Contract view methods implementations.
      */
 
-    override fun animateUserPhoneView() {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
-    }
-
     override fun goToChooseCountryScreen() {
         TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
     }
