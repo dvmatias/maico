@@ -54,14 +54,6 @@ class SplashActivity : BaseActivity(), SplashContract.View {
         Log.d(TAG, "MABEL - Go to ValidateCredentialsScreen.")
     }
 
-    override fun showLoading(show: Boolean) {
-        pb.visibility = if (show) {
-            View.VISIBLE
-        } else {
-            View.GONE
-        }
-    }
-
     override fun showNeedPermissionDialog() {
         TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
     }

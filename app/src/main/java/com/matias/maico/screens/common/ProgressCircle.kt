@@ -25,7 +25,7 @@ class ProgressCircle : ProgressBar {
     private fun init(context: Context) {
         val drawable = indeterminateDrawable
         drawable?.setColorFilter(
-                ContextCompat.getColor(context, R.color.color_primary_dark), PorterDuff.Mode.SRC_IN)
+                ContextCompat.getColor(context, R.color.color_white), PorterDuff.Mode.SRC_IN)
     }
 
 }
