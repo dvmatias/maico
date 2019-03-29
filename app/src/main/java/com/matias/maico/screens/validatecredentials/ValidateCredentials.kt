@@ -13,4 +13,8 @@ class ValidateCredentials : AppCompatActivity() {
         setContentView(R.layout.activity_validate_credentials)
     }
 
+    override fun onBackPressed() {
+        super.onBackPressed()
+        finish()
+    }
 }

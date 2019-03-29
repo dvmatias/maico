@@ -14,7 +14,7 @@ class CheckNetworkStatusInteractor(private var internetConnectivityManager: Inte
         Handler().postDelayed({
             if (internetConnectivityManager.checkInternetConnectionStatus()) listener.internetConnected()
             else listener.internetNotConnected()
-        }, 1000)
+        }, 750)
     }
 
 }
