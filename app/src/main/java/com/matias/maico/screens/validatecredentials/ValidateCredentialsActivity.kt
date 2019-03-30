@@ -1,13 +1,20 @@
 package com.matias.maico.screens.validatecredentials
 
 import android.os.Bundle
+import android.util.Log
 import com.matias.maico.R
 import com.matias.maico.common.mvp.BaseActivity
+import com.matias.maico.screens.common.view.ViewCountryPhoneSelector
 import javax.inject.Inject
 
-class ValidateCredentialsActivity : BaseActivity(), ValidateCredentialsContract.View {
+class ValidateCredentialsActivity : BaseActivity(), ValidateCredentialsContract.View, ViewCountryPhoneSelector.Listener {
 
     @Inject lateinit var presenter: ValidateCredentialsPresenter
+
+    companion object {
+        // Class tag.
+        private val TAG = ValidateCredentialsActivity::class.java.simpleName
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -20,11 +27,11 @@ class ValidateCredentialsActivity : BaseActivity(), ValidateCredentialsContract.
     }
 
     /*
-     * MVP - Contract view methods implementations.
+     * MVP - [ValidateCredentialsContract.View] interface implementation.
      */
 
     override fun goToChooseCountryScreen() {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+        // TODO launch ChooseCountryActivity.
     }
 
     override fun goToHomeScreen() {
@@ -43,8 +50,8 @@ class ValidateCredentialsActivity : BaseActivity(), ValidateCredentialsContract.
         TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
     }
 
-    override fun showTermsAndConditions() {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+    override fun showTermsAndConditions(show: Boolean) {
+        Log.d(TAG, "MABEL - showTermsAndConditions() -> $show")
     }
 
     override fun showWrongCountryInlineError() {
@@ -53,5 +60,21 @@ class ValidateCredentialsActivity : BaseActivity(), ValidateCredentialsContract.
 
     override fun showWrongNumberInlineError() {
         TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+    }
+
+    /*
+     * [ViewCountryPhoneSelector.Listener] interface implementation.
+     */
+
+    override fun onCountryClick() {
+        goToChooseCountryScreen()
+    }
+
+    override fun onPhoneEmpty() {
+        showTermsAndConditions(false)
+    }
+
+    override fun onPhoneNotEmpty() {
+        showTermsAndConditions(true)
     }
 }
