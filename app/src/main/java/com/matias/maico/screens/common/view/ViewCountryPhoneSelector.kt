@@ -12,6 +12,15 @@ class ViewCountryPhoneSelector(context: Context, attrs: AttributeSet) : LinearLa
     private lateinit var clickListener: ClickListener
 
     /**
+     * Catch click actions.
+     */
+    override fun onClick(v: View?) {
+        when (v?.id) {
+            btn_country.id -> clickListener.onCountryClick()
+        }
+    }
+
+    /**
      * Interface to be implemented by calling Activity.
      */
     interface ClickListener {
@@ -37,15 +46,6 @@ class ViewCountryPhoneSelector(context: Context, attrs: AttributeSet) : LinearLa
             this.clickListener = context
         else
             throw IllegalAccessException("Calling Activity must implement ViewCountryPhoneSelector.ClickListener interface.")
-    }
-
-    /**
-     * Catch click actions.
-     */
-    override fun onClick(v: View?) {
-        when (v?.id) {
-            btn_country.id -> clickListener.onCountryClick()
-        }
     }
 
 }
