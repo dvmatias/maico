@@ -33,7 +33,7 @@ class SplashActivity : BaseActivity(), SplashContract.View {
     }
 
     /*
-     * MVP - Contract view methods implementations.
+     * MVP - [SplashContract.View] implementation.
      */
 
     override fun checkInternetConnectionStatus() {

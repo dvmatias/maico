@@ -3,9 +3,10 @@ package com.matias.maico.screens.validatecredentials
 import android.os.Bundle
 import com.matias.maico.R
 import com.matias.maico.common.mvp.BaseActivity
+import com.matias.maico.screens.common.view.ViewCountryPhoneSelector
 import javax.inject.Inject
 
-class ValidateCredentialsActivity : BaseActivity(), ValidateCredentialsContract.View {
+class ValidateCredentialsActivity : BaseActivity(), ValidateCredentialsContract.View, ViewCountryPhoneSelector.ClickListener {
 
     @Inject lateinit var presenter: ValidateCredentialsPresenter
 
@@ -20,11 +21,11 @@ class ValidateCredentialsActivity : BaseActivity(), ValidateCredentialsContract.
     }
 
     /*
-     * MVP - Contract view methods implementations.
+     * MVP - [ValidateCredentialsContract.View] interface implementation.
      */
 
     override fun goToChooseCountryScreen() {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+        // TODO launch ChooseCountryActivity.
     }
 
     override fun goToHomeScreen() {
@@ -53,5 +54,13 @@ class ValidateCredentialsActivity : BaseActivity(), ValidateCredentialsContract.
 
     override fun showWrongNumberInlineError() {
         TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+    }
+
+    /*
+     * [ViewCountryPhoneSelector.ClickListener] interface implementation.
+     */
+
+    override fun onCountryClick() {
+        goToChooseCountryScreen()
     }
 }
