@@ -65,7 +65,6 @@ class ValidateCredentialsActivity : BaseActivity(), ValidateCredentialsContract.
     /*
      * [ViewCountryPhoneSelector.Listener] interface implementation.
      */
-
     override fun onCountryClick() {
         goToChooseCountryScreen()
     }
@@ -73,7 +72,6 @@ class ValidateCredentialsActivity : BaseActivity(), ValidateCredentialsContract.
     override fun onPhoneEmpty() {
         showTermsAndConditions(false)
     }
-
     override fun onPhoneNotEmpty() {
         showTermsAndConditions(true)
     }

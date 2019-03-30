@@ -13,7 +13,7 @@ class ViewCountryPhoneSelector(context: Context, attrs: AttributeSet) : LinearLa
 
     private lateinit var listener: Listener
 
-    /**
+    /*
      * [TextWatcher] interface implementation.
      */
 
