@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+	xmlns:android="http://schemas.android.com/apk/res/android"
+	xmlns:app="http://schemas.android.com/apk/res-auto"
+	xmlns:tools="http://schemas.android.com/tools"
+	android:layout_width="match_parent"
+	android:layout_height="wrap_content"
+	android:layout_margin="@dimen/dimen_8dp"
+	android:orientation="vertical">
+
+	<!-- Title -->
+	<TextView
+		android:id="@+id/tv_title"
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content"
+		android:text="@string/title_validate_credentials_screen" />
+
+	<!-- Container. -->
+	<LinearLayout
+		android:id="@+id/linearLayout"
+		android:layout_width="match_parent"
+		android:layout_height="@dimen/dimen_40dp"
+		android:layout_marginTop="@dimen/dimen_8dp"
+		android:maxLines="2"
+		android:ellipsize="end"
+		android:background="@color/color_primary_dark"
+		android:orientation="horizontal" >
+
+		<!-- Country Flag Plus Country Phone Prefix. -->
+		<TextView
+			android:id="@+id/tv_flag_prefix"
+			android:layout_width="wrap_content"
+			android:layout_height="match_parent"
+			android:background="#0099ff"
+			android:gravity="center"
+			android:minWidth="@dimen/dimen_64dp" />
+
+		<!-- Phone Number Field. -->
+		<android.support.v7.widget.AppCompatEditText
+			android:id="@+id/et_phone"
+			android:layout_width="0dp"
+			android:layout_height="match_parent"
+			android:layout_weight="1"
+			android:background="#8400ff"
+			android:inputType="phone"
+			android:hint="@string/hint_view_country_phone_selector"
+			android:imeOptions="actionDone"
+			android:textAlignment="center" />
+	</LinearLayout>
+
+	<!-- Inline Error. -->
+	<TextView
+		android:id="@+id/tv_error"
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content"
+		android:layout_marginTop="@dimen/dimen_8dp"
+		android:textAlignment="textEnd"
+		android:maxLines="2"
+		android:ellipsize="end"
+		android:textColor="@color/color_country_phone_error"
+		android:text="Inline error text"
+		tools:text="Inline error text" />
+
+</LinearLayout>
