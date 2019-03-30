@@ -22,7 +22,7 @@
 		android:layout_marginTop="@dimen/dimen_8dp"
 		android:maxLines="2"
 		android:ellipsize="end"
-		android:background="@drawable/abcd"
+		android:background="@drawable/shape_view_country_phone_selector_bg"
 		android:orientation="horizontal" >
 
 		<!-- Country Flag Plus Country Phone Prefix. -->
@@ -49,7 +49,7 @@
 			android:id="@+id/et_phone"
 			android:layout_width="0dp"
 			android:layout_height="match_parent"
-			android:layout_weight="1"
+			android:layout_weight="@integer/one"
 			android:inputType="phone"
 			android:hint="@string/hint_view_country_phone_selector"
 			android:imeOptions="actionDone"
@@ -64,10 +64,10 @@
 		android:layout_height="wrap_content"
 		android:layout_marginTop="@dimen/dimen_8dp"
 		android:textAlignment="textEnd"
-		android:maxLines="2"
+        android:minLines="@integer/one"
+		android:maxLines="@integer/two"
 		android:ellipsize="end"
 		android:textColor="@color/color_country_phone_error"
 		android:text="Inline error text"
 		tools:text="Inline error text" />
-
 </LinearLayout>
