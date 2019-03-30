@@ -13,7 +13,7 @@
     <color name="color_background_activity_splash">@color/color_notification_bar_activity_splash</color>
 
     <!-- View Country Phone Selector -->
-    <color name="color_shape_bgr">#c8bde4bf</color>
+    <color name="color_shape_bgr">#70a2b0be</color>
     <color name="color_country_phone_error">#d60d28</color>
 
 </resources>
