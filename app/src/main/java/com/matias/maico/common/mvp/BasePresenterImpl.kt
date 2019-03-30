@@ -1,6 +1,6 @@
 package com.matias.maico.common.mvp
 
-class BasePresenterImpl<V: BaseView> : BasePresenter<V> {
+open class BasePresenterImpl<V: BaseView> : BasePresenter<V> {
 
     var view: V? = null
 

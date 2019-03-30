@@ -1,13 +1,15 @@
 package com.matias.maico.common.dependencyinjection.application
 
-import com.matias.maico.common.dependencyinjection.presentation.PresentationComponent
-import com.matias.maico.common.dependencyinjection.presentation.PresentationModule
+import com.matias.maico.common.dependencyinjection.presentation.*
 import dagger.Component
 import javax.inject.Singleton
 
 @Singleton
 @Component(
-    modules = [ApplicationModule::class]
+    modules = [
+        ApplicationModule::class,
+        NetworkingModule::class
+    ]
 )
 interface ApplicationComponent {
 
