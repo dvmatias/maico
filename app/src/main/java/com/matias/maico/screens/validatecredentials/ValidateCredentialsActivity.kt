@@ -2,11 +2,13 @@ package com.matias.maico.screens.validatecredentials
 
 import android.os.Bundle
 import android.util.Log
+import android.view.View
 import com.matias.maico.R
 import com.matias.maico.common.mvp.BaseActivity
 import com.matias.maico.screens.common.ViewAgreement
 import com.matias.maico.screens.common.view.ViewCountryPhoneSelector
 import javax.inject.Inject
+import kotlinx.android.synthetic.main.activity_validate_credentials.*
 
 class ValidateCredentialsActivity : BaseActivity(),
 		ValidateCredentialsContract.View,
@@ -51,11 +53,11 @@ class ValidateCredentialsActivity : BaseActivity(),
     }
 
     override fun showGetStartButton(show: Boolean) {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+	    btn_get_started.visibility = if(show) View.VISIBLE else View.GONE
     }
 
     override fun showTermsAndConditions(show: Boolean) {
-        Log.d(TAG, "MABEL - showTermsAndConditions() -> $show")
+	    agreement_view.visibility = if(show) View.VISIBLE else View.GONE
     }
 
     override fun showWrongCountryInlineError() {

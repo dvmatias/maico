@@ -47,7 +47,7 @@ class ViewAgreement(context: Context, attrs: AttributeSet) : LinearLayout(contex
             listener.onAgreementAccepted()
         } else {
             setUncheckedImage()
-            listener.onAgreementAccepted()
+            listener.onAgreementRejected()
         }
     }
 
