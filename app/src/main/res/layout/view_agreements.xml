@@ -1,11 +1,32 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+	xmlns:tools="http://schemas.android.com/tools"
 	android:layout_width="match_parent"
-	android:layout_height="match_parent"
+	android:layout_height="wrap_content"
 	android:orientation="horizontal">
 
-	<View
-		android:layout_width="match_parent"
-		android:layout_height="100dp"
-		android:background="#ff9800"/>
+	<FrameLayout
+		android:layout_width="wrap_content"
+		android:layout_height="match_parent">
+
+		<ImageView
+			android:id="@+id/iv_checkbox"
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:layout_gravity="center"
+			android:layout_margin="@dimen/dimen_8dp"
+			android:src="@drawable/ic_check_circle_unchecked"
+			android:background="?android:attr/selectableItemBackgroundBorderless"
+			android:clickable="true"
+			android:focusable="true"
+			android:contentDescription="@null"/>
+	</FrameLayout>
+
+	<TextView
+		android:id="@+id/tv_terms"
+		android:layout_width="0dp"
+		android:layout_height="wrap_content"
+		android:layout_weight="@integer/one"
+		android:padding="@dimen/dimen_4dp"
+		android:text="By checking the box I confirm that I am over 18 years old and that I have read and accept the Terms and Conditions and Private Policy." />
 </LinearLayout>

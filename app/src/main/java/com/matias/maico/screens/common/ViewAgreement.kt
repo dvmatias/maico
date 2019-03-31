@@ -2,7 +2,6 @@ package com.matias.maico.screens.common
 
 import android.content.Context
 import android.util.AttributeSet
-import android.view.View.inflate
 import android.widget.LinearLayout
 import com.matias.maico.R
 
