@@ -4,10 +4,14 @@ import android.os.Bundle
 import android.util.Log
 import com.matias.maico.R
 import com.matias.maico.common.mvp.BaseActivity
+import com.matias.maico.screens.common.ViewAgreement
 import com.matias.maico.screens.common.view.ViewCountryPhoneSelector
 import javax.inject.Inject
 
-class ValidateCredentialsActivity : BaseActivity(), ValidateCredentialsContract.View, ViewCountryPhoneSelector.Listener {
+class ValidateCredentialsActivity : BaseActivity(),
+		ValidateCredentialsContract.View,
+		ViewCountryPhoneSelector.Listener,
+		ViewAgreement.Listener {
 
     @Inject lateinit var presenter: ValidateCredentialsPresenter
 
@@ -65,6 +69,7 @@ class ValidateCredentialsActivity : BaseActivity(), ValidateCredentialsContract.
     /*
      * [ViewCountryPhoneSelector.Listener] interface implementation.
      */
+
     override fun onCountryClick() {
         goToChooseCountryScreen()
     }
@@ -75,4 +80,17 @@ class ValidateCredentialsActivity : BaseActivity(), ValidateCredentialsContract.
     override fun onPhoneNotEmpty() {
         showTermsAndConditions(true)
     }
+
+	/*
+	 * [ViewAgreement.Listener] interface implementation.
+	 */
+
+	override fun onAgreementAccepted() {
+		showGetStartButton(true)
+	}
+
+	override fun onAgreementRejected() {
+		showGetStartButton(false)
+	}
+
 }
