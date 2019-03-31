@@ -13,9 +13,7 @@ class ViewAgreement(context: Context, attrs: AttributeSet) : LinearLayout(contex
 
     override fun onClick(v: View?) {
         when (v?.id) {
-            iv_checkbox.id -> {
-                setCheckStatus()
-            }
+            iv_checkbox.id -> setChecked(!iv_checkbox.isSelected)
         }
     }
 
@@ -39,10 +37,8 @@ class ViewAgreement(context: Context, attrs: AttributeSet) : LinearLayout(contex
             throw IllegalAccessException("Calling Activity must implement ViewAgreement.Listener interface.")
     }
 
-    private fun setCheckStatus() {
-        iv_checkbox.isSelected = !iv_checkbox.isSelected
-
-        if (iv_checkbox.isSelected) {
+    private fun setCheckStatus(isChecked: Boolean) {
+        if (isChecked) {
             setCheckedImage()
             listener.onAgreementAccepted()
         } else {
@@ -58,5 +54,10 @@ class ViewAgreement(context: Context, attrs: AttributeSet) : LinearLayout(contex
     private fun setUncheckedImage() {
         iv_checkbox.setImageDrawable(context.getDrawable(R.drawable.ic_check_circle_unchecked))
     }
+
+	fun setChecked(isChecked: Boolean) {
+		iv_checkbox.isSelected = isChecked
+		setCheckStatus(isChecked)
+	}
 
 }

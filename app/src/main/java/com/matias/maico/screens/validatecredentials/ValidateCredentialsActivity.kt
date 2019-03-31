@@ -1,14 +1,13 @@
 package com.matias.maico.screens.validatecredentials
 
 import android.os.Bundle
-import android.util.Log
 import android.view.View
 import com.matias.maico.R
 import com.matias.maico.common.mvp.BaseActivity
 import com.matias.maico.screens.common.ViewAgreement
 import com.matias.maico.screens.common.view.ViewCountryPhoneSelector
-import javax.inject.Inject
 import kotlinx.android.synthetic.main.activity_validate_credentials.*
+import javax.inject.Inject
 
 class ValidateCredentialsActivity : BaseActivity(),
 		ValidateCredentialsContract.View,
@@ -16,6 +15,8 @@ class ValidateCredentialsActivity : BaseActivity(),
 		ViewAgreement.Listener {
 
     @Inject lateinit var presenter: ValidateCredentialsPresenter
+
+	private var isAgreementViewVisible: Boolean = false
 
     companion object {
         // Class tag.
@@ -56,8 +57,12 @@ class ValidateCredentialsActivity : BaseActivity(),
 	    btn_get_started.visibility = if(show) View.VISIBLE else View.GONE
     }
 
-    override fun showTermsAndConditions(show: Boolean) {
-	    agreement_view.visibility = if(show) View.VISIBLE else View.GONE
+	override fun showTermsAndConditions(show: Boolean) {
+		if (isAgreementViewVisible == show) return
+		isAgreementViewVisible = show
+		if (show)
+			agreement_view.setChecked(!show)
+		agreement_view.visibility = if (show) View.VISIBLE else View.GONE
     }
 
     override fun showWrongCountryInlineError() {
@@ -78,6 +83,7 @@ class ValidateCredentialsActivity : BaseActivity(),
 
     override fun onPhoneEmpty() {
         showTermsAndConditions(false)
+	    showGetStartButton(false)
     }
     override fun onPhoneNotEmpty() {
         showTermsAndConditions(true)
