@@ -1,15 +1,22 @@
 package com.matias.maico.screens.validatecredentials
 
 import android.os.Bundle
-import android.util.Log
+import android.view.View
 import com.matias.maico.R
 import com.matias.maico.common.mvp.BaseActivity
+import com.matias.maico.screens.common.ViewAgreement
 import com.matias.maico.screens.common.view.ViewCountryPhoneSelector
+import kotlinx.android.synthetic.main.activity_validate_credentials.*
 import javax.inject.Inject
 
-class ValidateCredentialsActivity : BaseActivity(), ValidateCredentialsContract.View, ViewCountryPhoneSelector.Listener {
+class ValidateCredentialsActivity : BaseActivity(),
+		ValidateCredentialsContract.View,
+		ViewCountryPhoneSelector.Listener,
+		ViewAgreement.Listener {
 
     @Inject lateinit var presenter: ValidateCredentialsPresenter
+
+	private var isAgreementViewVisible: Boolean = false
 
     companion object {
         // Class tag.
@@ -47,11 +54,15 @@ class ValidateCredentialsActivity : BaseActivity(), ValidateCredentialsContract.
     }
 
     override fun showGetStartButton(show: Boolean) {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+	    btn_get_started.visibility = if(show) View.VISIBLE else View.GONE
     }
 
-    override fun showTermsAndConditions(show: Boolean) {
-        Log.d(TAG, "MABEL - showTermsAndConditions() -> $show")
+	override fun showTermsAndConditions(show: Boolean) {
+		if (isAgreementViewVisible == show) return
+		isAgreementViewVisible = show
+		if (show)
+			agreement_view.setChecked(!show)
+		agreement_view.visibility = if (show) View.VISIBLE else View.GONE
     }
 
     override fun showWrongCountryInlineError() {
@@ -65,14 +76,29 @@ class ValidateCredentialsActivity : BaseActivity(), ValidateCredentialsContract.
     /*
      * [ViewCountryPhoneSelector.Listener] interface implementation.
      */
+
     override fun onCountryClick() {
         goToChooseCountryScreen()
     }
 
     override fun onPhoneEmpty() {
         showTermsAndConditions(false)
+	    showGetStartButton(false)
     }
     override fun onPhoneNotEmpty() {
         showTermsAndConditions(true)
     }
+
+	/*
+	 * [ViewAgreement.Listener] interface implementation.
+	 */
+
+	override fun onAgreementAccepted() {
+		showGetStartButton(true)
+	}
+
+	override fun onAgreementRejected() {
+		showGetStartButton(false)
+	}
+
 }
