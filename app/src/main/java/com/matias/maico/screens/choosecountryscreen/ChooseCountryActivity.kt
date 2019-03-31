@@ -1,4 +1,4 @@
-package com.matias.maico.screens.ChooseCountryScreen
+package com.matias.maico.screens.choosecountryscreen
 
 import android.os.Bundle
 import android.view.MenuItem
@@ -29,5 +29,5 @@ class ChooseCountryActivity : BaseActivity() {
 		finish()
 		return true
 	}
-	
+
 }
