@@ -7,10 +7,14 @@
 
     <!-- Generals -->
     <color name="color_white">#FFFFFF</color>
+    <color name="color_ok_button_bgr">@color/color_primary</color>
+    <color name="color_ok_button_ripple">@color/color_primary_light</color>
 
     <!-- Activity Splash -->
     <color name="color_notification_bar_activity_splash">@color/color_primary</color>
     <color name="color_background_activity_splash">@color/color_notification_bar_activity_splash</color>
+
+	<!-- Activity Validate Credentials -->
 
     <!-- View Country Phone Selector -->
     <color name="color_shape_bgr">#70a2b0be</color>

@@ -39,6 +39,7 @@ class ViewCountryPhoneSelector(context: Context, attrs: AttributeSet) :
 
         btn_country.setOnClickListener(this)
         et_phone.addTextChangedListener(this)
+	    hideError()
 
         setClickListener()
     }
@@ -49,5 +50,14 @@ class ViewCountryPhoneSelector(context: Context, attrs: AttributeSet) :
         else
             throw IllegalAccessException("Calling Activity must implement ViewCountryPhoneSelector.Listener interface.")
     }
+
+	private fun showError(errorMessage: String) {
+		tv_error.text = errorMessage
+		tv_error.visibility = View.VISIBLE
+	}
+
+	private fun hideError() {
+		tv_error.visibility = View.INVISIBLE
+	}
 
 }
