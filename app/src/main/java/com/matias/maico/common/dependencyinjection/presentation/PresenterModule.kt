@@ -1,6 +1,7 @@
 package com.matias.maico.common.dependencyinjection.presentation
 
 import com.matias.maico.common.mvp.BaseView
+import com.matias.maico.screens.choosecountryscreen.ChooseCountryPresenter
 import com.matias.maico.screens.splash.CheckCredentialsInteractor
 import com.matias.maico.screens.splash.CheckNetworkStatusInteractor
 import com.matias.maico.screens.splash.SplashContract
@@ -23,5 +24,7 @@ class PresenterModule {
 
     @Provides
     fun getValidateCredentialsPresenter(view: BaseView) = ValidateCredentialsPresenter(view as ValidateCredentialsContract.View)
-    
+
+	@Provides
+	fun getChooseCountryPresenter(view: BaseView) = ChooseCountryPresenter()
 }
