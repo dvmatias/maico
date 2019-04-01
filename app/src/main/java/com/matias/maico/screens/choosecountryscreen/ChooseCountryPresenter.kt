@@ -19,7 +19,7 @@ class ChooseCountryPresenter(
 	}
 
 	override fun onSuccess(countryList: CountrySchema) {
-		TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+		view?.setCountryList()
 	}
 
 	override fun onFailure() {
