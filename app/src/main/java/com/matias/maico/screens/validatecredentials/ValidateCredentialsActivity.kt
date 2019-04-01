@@ -29,6 +29,7 @@ class ValidateCredentialsActivity : BaseActivity(),
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_validate_credentials)
+	    getPresentationComponent().inject(this)
     }
 
     override fun onBackPressed() {

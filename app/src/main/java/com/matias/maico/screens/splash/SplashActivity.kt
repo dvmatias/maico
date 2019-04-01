@@ -23,8 +23,6 @@ class SplashActivity : BaseActivity(), SplashContract.View {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_splash)
         getPresentationComponent().inject(this)
-
-
     }
 
     override fun onResume() {

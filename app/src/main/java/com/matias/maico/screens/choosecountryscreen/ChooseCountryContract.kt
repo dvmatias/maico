@@ -8,6 +8,8 @@ interface ChooseCountryContract {
 	interface View : BaseView {
 		fun showLoading(show: Boolean)
 		fun setCountryList()
+		fun showEmptyState()
+		fun showRetryState()
 	}
 
 	interface Presenter : BasePresenter<View> {
