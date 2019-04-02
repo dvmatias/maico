@@ -1,5 +1,6 @@
 package com.matias.maico.screens.choosecountryscreen
 
+import com.matias.maico.common.model.objects.Country
 import com.matias.maico.common.model.schemas.CountrySchema
 import com.matias.maico.common.mvp.BasePresenterImpl
 
@@ -18,8 +19,12 @@ class ChooseCountryPresenter(
 		fetchCountryListInteractor.fetch(this)
 	}
 
-	override fun onSuccess(countryList: CountrySchema) {
-		view?.setCountryList()
+	override fun onSuccess(countrySchema: CountrySchema) {
+		val countryList = countrySchema.countryList.map {
+			Country(it.name, it.initials, it.url, it.code)
+		}
+
+		view?.setCountryList(countryList)
 	}
 
 	override fun onFailure() {

@@ -7,10 +7,18 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
 import com.matias.maico.R
-import com.matias.maico.screens.choosecountryscreen.AdapterCountry.CountryViewHolder
+import com.matias.maico.common.model.objects.Country
+import com.matias.maico.screens.choosecountryscreen.CountryListAdapter.CountryViewHolder
 import kotlinx.android.synthetic.main.item_country.view.*
 
-class AdapterCountry(private val data: List<Country>) : RecyclerView.Adapter<CountryViewHolder>() {
+class CountryListAdapter : RecyclerView.Adapter<CountryViewHolder>() {
+
+	private lateinit var countryList: List<Country>
+
+	fun setData(countryList: List<Country>) {
+		this.countryList = countryList
+		notifyDataSetChanged()
+	}
 
 	/**
 	 * View Holder.
@@ -37,14 +45,14 @@ class AdapterCountry(private val data: List<Country>) : RecyclerView.Adapter<Cou
 	}
 
 	override fun onBindViewHolder(holder: CountryViewHolder, position: Int) {
-		val country = data[position]
+		val country = countryList[position]
 		// TODO manage image. Glide.
 		holder.tvName.tv_name.text = country.name
 		holder.tvCode.tv_code.text = country.code
 	}
 
 	override fun getItemCount(): Int {
-		return data.size
+		return countryList.size
 	}
 
 }

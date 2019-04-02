@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.util.Log
 import android.view.MenuItem
 import com.matias.maico.R
+import com.matias.maico.common.model.objects.Country
 import com.matias.maico.common.mvp.BaseActivity
 import javax.inject.Inject
 
@@ -53,8 +54,8 @@ class ChooseCountryActivity : BaseActivity(), ChooseCountryContract.View {
 		Log.d(TAG, "*** MABEL showLoading() $show")
 	}
 
-	override fun setCountryList() {
-		Log.d(TAG, "*** MABEL setCountryList()")
+	override fun setCountryList(countryList: List<Country>) {
+//		adapter.setData(countryList) TODO
 	}
 
 	override fun showEmptyState() {
