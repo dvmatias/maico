@@ -11,9 +11,15 @@ import com.matias.maico.common.model.objects.Country
 import com.matias.maico.screens.choosecountryscreen.CountryListAdapter.CountryViewHolder
 import kotlinx.android.synthetic.main.item_country.view.*
 
-class CountryListAdapter : RecyclerView.Adapter<CountryViewHolder>() {
+class CountryListAdapter(listener: ClickListener) : RecyclerView.Adapter<CountryViewHolder>() {
 
 	private var countryList: List<Country>? = null
+
+	private var clickListener: ClickListener = listener
+
+	interface ClickListener {
+		fun onItemClick(itemCountry: Country?)
+	}
 
 	fun setData(countryList: List<Country>) {
 		this.countryList = countryList
@@ -23,31 +29,27 @@ class CountryListAdapter : RecyclerView.Adapter<CountryViewHolder>() {
 	/**
 	 * View Holder.
 	 */
-	class CountryViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView), View.OnClickListener {
-		var ivFlag: ImageView =  itemView.iv_flag
-		var tvCode: TextView =  itemView.tv_code
-		var tvName: TextView =  itemView.tv_name
-
-		init {
-			itemView.setOnClickListener(this)
-		}
-
-		override fun onClick(v: View?) {
-			
-		}
+	class CountryViewHolder(itemView: View) :
+		RecyclerView.ViewHolder(itemView) {
+		var ivFlag: ImageView = itemView.iv_flag
+		var tvCode: TextView = itemView.tv_code
+		var tvName: TextView = itemView.tv_name
 	}
 
 	override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CountryViewHolder {
 		val itemView = LayoutInflater.from(parent.context)
-				.inflate(R.layout.item_country, parent, false)
+			.inflate(R.layout.item_country, parent, false)
 		return CountryViewHolder(itemView)
 	}
 
 	override fun onBindViewHolder(holder: CountryViewHolder, position: Int) {
-		val country = countryList?.get(position)
+		val itemCountry = countryList?.get(position)
 		// TODO manage image. Glide.
-		holder.tvName.tv_name.text = country?.name
-		holder.tvCode.tv_code.text = country?.code
+		holder.tvName.tv_name.text = itemCountry?.name
+		holder.tvCode.tv_code.text = itemCountry?.code
+		holder.itemView.setOnClickListener {
+			clickListener.onItemClick(itemCountry)
+		}
 	}
 
 	override fun getItemCount(): Int = if (countryList != null) countryList!!.size else 0

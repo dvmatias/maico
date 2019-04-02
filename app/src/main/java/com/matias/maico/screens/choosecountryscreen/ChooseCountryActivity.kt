@@ -10,7 +10,7 @@ import com.matias.maico.common.mvp.BaseActivity
 import kotlinx.android.synthetic.main.activity_choose_country.*
 import javax.inject.Inject
 
-class ChooseCountryActivity : BaseActivity(), ChooseCountryContract.View {
+class ChooseCountryActivity : BaseActivity(), ChooseCountryContract.View, CountryListAdapter.ClickListener {
 
 	@Inject lateinit var presenter: ChooseCountryPresenter
 	@Inject lateinit var adapter: CountryListAdapter
@@ -70,5 +70,13 @@ class ChooseCountryActivity : BaseActivity(), ChooseCountryContract.View {
 
 	override fun showRetryState() {
 		Log.d(TAG, "*** MABEL showRetryState()")
+	}
+
+	/*
+	 * [CountryListAdapter.ClickListener] interface implementation.
+	 */
+
+	override fun onItemClick(itemCountry: Country?) {
+		Log.d(TAG, "*** MABEL onItemClick() $itemCountry")
 	}
 }
