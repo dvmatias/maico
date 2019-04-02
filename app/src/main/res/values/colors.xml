@@ -12,6 +12,9 @@
     <color name="color_notification_bar_activity_splash">@color/color_primary</color>
     <color name="color_background_activity_splash">@color/color_notification_bar_activity_splash</color>
 
+    <!-- View Progress Circle -->
+	<color name="color_progress">#FF9800</color>
+
     <!-- View Country Phone Selector -->
     <color name="color_shape_bgr">#70a2b0be</color>
     <color name="color_country_phone_error">#d60d28</color>

@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.support.v7.widget.LinearLayoutManager
 import android.util.Log
 import android.view.MenuItem
+import android.view.View
 import com.matias.cogui.R
 import com.matias.cogui.common.model.objects.Country
 import com.matias.cogui.common.mvp.BaseActivity
@@ -58,18 +59,23 @@ class ChooseCountryActivity : BaseActivity(),
 	 * MVP - [ChooseCountryContract.View] interface implementation.
 	 */
 
-	override fun showLoading(show: Boolean) {
-		Log.d(TAG, "*** MABEL showLoading() $show")
-		// TODO
-	}
-
-	override fun setCountryList(countryList: List<Country>) {
+	override fun setData(countryList: List<Country>) {
 		adapter.setData(countryList)
 	}
 
 	override fun showEmptyState() {
 		Log.d(TAG, "*** MABEL showEmptyState()")
 		// TODO
+	}
+
+	override fun showLoading(show: Boolean) {
+		if (show) {
+			rv_country.visibility = View.GONE
+			progress.visibility = View.VISIBLE
+		} else {
+			progress.visibility = View.GONE
+			rv_country.visibility = View.VISIBLE
+		}
 	}
 
 	override fun showRetryState() {
