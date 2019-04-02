@@ -2,7 +2,7 @@ package com.matias.maico.common.dependencyinjection.presentation
 
 import android.content.Context
 import com.matias.maico.common.utils.ImageLoader
-import com.matias.maico.screens.choosecountryscreen.CountryListAdapter
+import com.matias.maico.screens.choosecountry.CountryListAdapter
 import dagger.Module
 import dagger.Provides
 

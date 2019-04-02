@@ -6,7 +6,7 @@ import android.view.View
 import com.matias.maico.R
 import com.matias.maico.common.Constants
 import com.matias.maico.common.mvp.BaseActivity
-import com.matias.maico.screens.choosecountryscreen.ChooseCountryActivity
+import com.matias.maico.screens.choosecountry.ChooseCountryActivity
 import com.matias.maico.screens.common.ViewAgreement
 import com.matias.maico.screens.common.view.ViewCountryPhoneSelector
 import kotlinx.android.synthetic.main.activity_validate_credentials.*

@@ -1,4 +1,4 @@
-package com.matias.maico.screens.choosecountryscreen
+package com.matias.maico.screens.choosecountry
 
 import com.matias.maico.common.model.objects.Country
 import com.matias.maico.common.model.schemas.CountrySchema
@@ -7,7 +7,8 @@ import com.matias.maico.common.mvp.BasePresenterImpl
 class ChooseCountryPresenter(
 	v: ChooseCountryContract.View,
 	var fetchCountryListInteractor: FetchCountryListInteractor
-) : BasePresenterImpl<ChooseCountryContract.View>(), ChooseCountryContract.Presenter,
+) : BasePresenterImpl<ChooseCountryContract.View>(),
+	ChooseCountryContract.Presenter,
 	FetchCountryListInteractor.Listener {
 
 	init {

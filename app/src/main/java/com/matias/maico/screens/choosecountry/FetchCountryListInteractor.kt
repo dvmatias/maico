@@ -1,4 +1,4 @@
-package com.matias.maico.screens.choosecountryscreen
+package com.matias.maico.screens.choosecountry
 
 import android.os.Handler
 import android.util.Log

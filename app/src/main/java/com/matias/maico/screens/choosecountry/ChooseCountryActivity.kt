@@ -1,4 +1,4 @@
-package com.matias.maico.screens.choosecountryscreen
+package com.matias.maico.screens.choosecountry
 
 import android.os.Bundle
 import android.support.v7.widget.LinearLayoutManager
@@ -10,7 +10,9 @@ import com.matias.maico.common.mvp.BaseActivity
 import kotlinx.android.synthetic.main.activity_choose_country.*
 import javax.inject.Inject
 
-class ChooseCountryActivity : BaseActivity(), ChooseCountryContract.View, CountryListAdapter.ClickListener {
+class ChooseCountryActivity : BaseActivity(),
+	ChooseCountryContract.View,
+	CountryListAdapter.ClickListener {
 
 	@Inject lateinit var presenter: ChooseCountryPresenter
 	@Inject lateinit var adapter: CountryListAdapter

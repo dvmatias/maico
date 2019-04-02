@@ -1,9 +1,9 @@
 package com.matias.maico.common.dependencyinjection.presentation
 
 import com.matias.maico.common.mvp.BaseView
-import com.matias.maico.screens.choosecountryscreen.ChooseCountryContract
-import com.matias.maico.screens.choosecountryscreen.ChooseCountryPresenter
-import com.matias.maico.screens.choosecountryscreen.FetchCountryListInteractor
+import com.matias.maico.screens.choosecountry.ChooseCountryContract
+import com.matias.maico.screens.choosecountry.ChooseCountryPresenter
+import com.matias.maico.screens.choosecountry.FetchCountryListInteractor
 import com.matias.maico.screens.splash.CheckCredentialsInteractor
 import com.matias.maico.screens.splash.CheckNetworkStatusInteractor
 import com.matias.maico.screens.splash.SplashContract
@@ -32,5 +32,8 @@ class PresenterModule {
 			view: BaseView,
 			fetchCountryListInteractor: FetchCountryListInteractor
 	): ChooseCountryPresenter =
-			ChooseCountryPresenter(view as ChooseCountryContract.View, fetchCountryListInteractor)
+		ChooseCountryPresenter(
+			view as ChooseCountryContract.View,
+			fetchCountryListInteractor
+		)
 }

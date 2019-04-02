@@ -34,7 +34,7 @@
 
 		<!-- Choose Country Activity -->
 		<activity
-			android:name=".screens.choosecountryscreen.ChooseCountryActivity">
+			android:name=".screens.choosecountry.ChooseCountryActivity">
 			<meta-data
 				android:name="android.support.PARENT_ACTIVITY"
 				android:value=".screens.validatecredentials.ValidateCredentialsActivity" />

@@ -2,7 +2,7 @@ package com.matias.maico.common.dependencyinjection.presentation
 
 import com.matias.maico.common.dependencyinjection.utils.InternetConnectivityManager
 import com.matias.maico.common.managers.SharedPreferencesManager
-import com.matias.maico.screens.choosecountryscreen.FetchCountryListInteractor
+import com.matias.maico.screens.choosecountry.FetchCountryListInteractor
 import com.matias.maico.screens.splash.CheckCredentialsInteractor
 import com.matias.maico.screens.splash.CheckNetworkStatusInteractor
 import dagger.Module
@@ -20,6 +20,7 @@ class InteractorModule {
 		CheckCredentialsInteractor(sharedPreferencesManager)
 
 	@Provides
-	fun getFetchCountryListInteractor(): FetchCountryListInteractor = FetchCountryListInteractor()
+	fun getFetchCountryListInteractor(): FetchCountryListInteractor =
+		FetchCountryListInteractor()
 
 }

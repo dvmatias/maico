@@ -1,4 +1,4 @@
-package com.matias.maico.screens.choosecountryscreen
+package com.matias.maico.screens.choosecountry
 
 import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
@@ -6,12 +6,10 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
-import com.bumptech.glide.Glide
-import com.bumptech.glide.load.engine.DiskCacheStrategy
 import com.matias.maico.R
 import com.matias.maico.common.model.objects.Country
 import com.matias.maico.common.utils.ImageLoader
-import com.matias.maico.screens.choosecountryscreen.CountryListAdapter.CountryViewHolder
+import com.matias.maico.screens.choosecountry.CountryListAdapter.CountryViewHolder
 import kotlinx.android.synthetic.main.item_country.view.*
 
 class CountryListAdapter(listener: ClickListener, var imageLoader: ImageLoader) :
