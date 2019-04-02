@@ -1,9 +1,12 @@
 package com.matias.maico.screens.validatecredentials
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.View
 import com.matias.maico.R
+import com.matias.maico.common.Constants
 import com.matias.maico.common.mvp.BaseActivity
+import com.matias.maico.screens.choosecountryscreen.ChooseCountryActivity
 import com.matias.maico.screens.common.ViewAgreement
 import com.matias.maico.screens.common.view.ViewCountryPhoneSelector
 import kotlinx.android.synthetic.main.activity_validate_credentials.*
@@ -26,6 +29,7 @@ class ValidateCredentialsActivity : BaseActivity(),
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_validate_credentials)
+	    getPresentationComponent().inject(this)
     }
 
     override fun onBackPressed() {
@@ -38,7 +42,8 @@ class ValidateCredentialsActivity : BaseActivity(),
      */
 
     override fun goToChooseCountryScreen() {
-        // TODO launch ChooseCountryActivity.
+        val intent = Intent(this, ChooseCountryActivity::class.java)
+        startActivityForResult(intent, Constants.REQUEST_CODE_CHOOSE_COUNTRY_ACTIVITY)
     }
 
     override fun goToHomeScreen() {
@@ -101,4 +106,11 @@ class ValidateCredentialsActivity : BaseActivity(),
 		showGetStartButton(false)
 	}
 
+    /*
+     * On Activity Result-
+     */
+
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+    }
 }

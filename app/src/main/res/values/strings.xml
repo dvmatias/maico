@@ -1,8 +1,8 @@
 <resources>
-    <string name="app_name">Maico</string>
+	<string name="app_name">Maico</string>
 
-    <string name="title_validate_credentials_screen">Write you phone number</string>
+	<string name="title_validate_credentials_screen">Write you phone number</string>
 
-    <string name="hint_view_country_phone_selector">Enter you number</string>
+	<string name="hint_view_country_phone_selector">Enter you number</string>
 
 </resources>

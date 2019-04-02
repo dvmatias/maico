@@ -1,6 +1,9 @@
 package com.matias.maico.common.dependencyinjection.presentation
 
 import com.matias.maico.common.mvp.BaseView
+import com.matias.maico.screens.choosecountryscreen.ChooseCountryContract
+import com.matias.maico.screens.choosecountryscreen.ChooseCountryPresenter
+import com.matias.maico.screens.choosecountryscreen.FetchCountryListInteractor
 import com.matias.maico.screens.splash.CheckCredentialsInteractor
 import com.matias.maico.screens.splash.CheckNetworkStatusInteractor
 import com.matias.maico.screens.splash.SplashContract
@@ -13,15 +16,21 @@ import dagger.Provides
 @Module
 class PresenterModule {
 
-    @Provides
-    fun getSplashPresenter(
-        view: BaseView,
-        checkNetworkStatusInteractor: CheckNetworkStatusInteractor,
-        checkCredentialsInteractor: CheckCredentialsInteractor
-    ): SplashPresenter =
-        SplashPresenter(view as SplashContract.View, checkNetworkStatusInteractor, checkCredentialsInteractor)
+	@Provides
+	fun getSplashPresenter(
+			view: BaseView,
+			checkNetworkStatusInteractor: CheckNetworkStatusInteractor,
+			checkCredentialsInteractor: CheckCredentialsInteractor
+	): SplashPresenter =
+			SplashPresenter(view as SplashContract.View, checkNetworkStatusInteractor, checkCredentialsInteractor)
 
-    @Provides
-    fun getValidateCredentialsPresenter(view: BaseView) = ValidateCredentialsPresenter(view as ValidateCredentialsContract.View)
-    
+	@Provides
+	fun getValidateCredentialsPresenter(view: BaseView) = ValidateCredentialsPresenter(view as ValidateCredentialsContract.View)
+
+	@Provides
+	fun getChooseCountryPresenter(
+			view: BaseView,
+			fetchCountryListInteractor: FetchCountryListInteractor
+	): ChooseCountryPresenter =
+			ChooseCountryPresenter(view as ChooseCountryContract.View, fetchCountryListInteractor)
 }
