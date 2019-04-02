@@ -58,6 +58,7 @@ class ChooseCountryActivity : BaseActivity(), ChooseCountryContract.View, Countr
 
 	override fun showLoading(show: Boolean) {
 		Log.d(TAG, "*** MABEL showLoading() $show")
+		// TODO
 	}
 
 	override fun setCountryList(countryList: List<Country>) {
@@ -66,10 +67,12 @@ class ChooseCountryActivity : BaseActivity(), ChooseCountryContract.View, Countr
 
 	override fun showEmptyState() {
 		Log.d(TAG, "*** MABEL showEmptyState()")
+		// TODO
 	}
 
 	override fun showRetryState() {
 		Log.d(TAG, "*** MABEL showRetryState()")
+		// TODO
 	}
 
 	/*
@@ -78,5 +81,6 @@ class ChooseCountryActivity : BaseActivity(), ChooseCountryContract.View, Countr
 
 	override fun onItemClick(itemCountry: Country?) {
 		Log.d(TAG, "*** MABEL onItemClick() $itemCountry")
+		// TODO
 	}
 }
