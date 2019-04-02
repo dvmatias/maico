@@ -13,7 +13,7 @@ import kotlinx.android.synthetic.main.item_country.view.*
 
 class CountryListAdapter : RecyclerView.Adapter<CountryViewHolder>() {
 
-	private lateinit var countryList: List<Country>
+	private var countryList: List<Country>? = null
 
 	fun setData(countryList: List<Country>) {
 		this.countryList = countryList
@@ -24,7 +24,6 @@ class CountryListAdapter : RecyclerView.Adapter<CountryViewHolder>() {
 	 * View Holder.
 	 */
 	class CountryViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView), View.OnClickListener {
-
 		var ivFlag: ImageView =  itemView.iv_flag
 		var tvCode: TextView =  itemView.tv_code
 		var tvName: TextView =  itemView.tv_name
@@ -34,7 +33,7 @@ class CountryListAdapter : RecyclerView.Adapter<CountryViewHolder>() {
 		}
 
 		override fun onClick(v: View?) {
-			TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+			
 		}
 	}
 
@@ -45,14 +44,12 @@ class CountryListAdapter : RecyclerView.Adapter<CountryViewHolder>() {
 	}
 
 	override fun onBindViewHolder(holder: CountryViewHolder, position: Int) {
-		val country = countryList[position]
+		val country = countryList?.get(position)
 		// TODO manage image. Glide.
-		holder.tvName.tv_name.text = country.name
-		holder.tvCode.tv_code.text = country.code
+		holder.tvName.tv_name.text = country?.name
+		holder.tvCode.tv_code.text = country?.code
 	}
 
-	override fun getItemCount(): Int {
-		return countryList.size
-	}
+	override fun getItemCount(): Int = if (countryList != null) countryList!!.size else 0
 
 }

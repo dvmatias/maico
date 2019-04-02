@@ -1,16 +1,19 @@
 package com.matias.maico.screens.choosecountryscreen
 
 import android.os.Bundle
+import android.support.v7.widget.LinearLayoutManager
 import android.util.Log
 import android.view.MenuItem
 import com.matias.maico.R
 import com.matias.maico.common.model.objects.Country
 import com.matias.maico.common.mvp.BaseActivity
+import kotlinx.android.synthetic.main.activity_choose_country.*
 import javax.inject.Inject
 
 class ChooseCountryActivity : BaseActivity(), ChooseCountryContract.View {
 
 	@Inject lateinit var presenter: ChooseCountryPresenter
+	@Inject lateinit var adapter: CountryListAdapter
 
 	companion object {
 		// Class tag.
@@ -24,6 +27,9 @@ class ChooseCountryActivity : BaseActivity(), ChooseCountryContract.View {
 
 		actionBar?.setDisplayHomeAsUpEnabled(true)
 		actionBar?.title = "Choose Country"
+
+		rv_country.layoutManager = LinearLayoutManager(this)
+		rv_country.adapter = adapter
 	}
 
 	override fun onOptionsItemSelected(item: MenuItem?): Boolean {
@@ -55,7 +61,7 @@ class ChooseCountryActivity : BaseActivity(), ChooseCountryContract.View {
 	}
 
 	override fun setCountryList(countryList: List<Country>) {
-//		adapter.setData(countryList) TODO
+		adapter.setData(countryList)
 	}
 
 	override fun showEmptyState() {
