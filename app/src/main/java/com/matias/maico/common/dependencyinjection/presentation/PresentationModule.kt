@@ -5,6 +5,7 @@ import android.content.Context
 import android.support.v4.app.FragmentManager
 import com.matias.maico.common.managers.SharedPreferencesManager
 import com.matias.maico.common.mvp.BaseView
+import com.matias.maico.common.utils.ImageLoader
 import dagger.Module
 import dagger.Provides
 
@@ -27,5 +28,8 @@ class PresentationModule(
     @Provides
     fun getSharedPreferencesManager(): SharedPreferencesManager
             = SharedPreferencesManager(getContext())
+
+	@Provides
+	fun getImageLoader(): ImageLoader = ImageLoader(getActivity())
 
 }

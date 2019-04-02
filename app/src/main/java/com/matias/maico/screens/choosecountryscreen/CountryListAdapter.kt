@@ -6,12 +6,16 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
+import com.bumptech.glide.Glide
+import com.bumptech.glide.load.engine.DiskCacheStrategy
 import com.matias.maico.R
 import com.matias.maico.common.model.objects.Country
+import com.matias.maico.common.utils.ImageLoader
 import com.matias.maico.screens.choosecountryscreen.CountryListAdapter.CountryViewHolder
 import kotlinx.android.synthetic.main.item_country.view.*
 
-class CountryListAdapter(listener: ClickListener) : RecyclerView.Adapter<CountryViewHolder>() {
+class CountryListAdapter(listener: ClickListener, var imageLoader: ImageLoader) :
+	RecyclerView.Adapter<CountryViewHolder>() {
 
 	private var countryList: List<Country>? = null
 
@@ -43,10 +47,10 @@ class CountryListAdapter(listener: ClickListener) : RecyclerView.Adapter<Country
 	}
 
 	override fun onBindViewHolder(holder: CountryViewHolder, position: Int) {
-		val itemCountry = countryList?.get(position)
-		// TODO manage image. Glide.
-		holder.tvName.tv_name.text = itemCountry?.name
-		holder.tvCode.tv_code.text = itemCountry?.code
+		val itemCountry = countryList!![position]
+		imageLoader.loadImage(holder.ivFlag, itemCountry.url)
+		holder.tvName.tv_name.text = itemCountry.name
+		holder.tvCode.tv_code.text = itemCountry.code
 		holder.itemView.setOnClickListener {
 			clickListener.onItemClick(itemCountry)
 		}
