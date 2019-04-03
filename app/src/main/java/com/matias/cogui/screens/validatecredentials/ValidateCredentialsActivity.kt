@@ -22,8 +22,8 @@ class ValidateCredentialsActivity : BaseActivity(),
 	ViewCountryPhoneSelector.Listener,
 	ViewAgreement.Listener {
 
-	@Inject
-	lateinit var presenter: ValidateCredentialsPresenter
+	@Inject lateinit var presenter: ValidateCredentialsPresenter
+	@Inject lateinit var gson: Gson
 
 	private var isAgreementViewVisible: Boolean = false
 	private lateinit var selectedCountry: Country
@@ -57,7 +57,7 @@ class ValidateCredentialsActivity : BaseActivity(),
 
 	override fun goToChooseCountryScreen() {
 		val intent = Intent(this, ChooseCountryActivity::class.java)
-		intent.putExtra(EXTRA_KEY_SELECTED_COUNTRY_COUNTRY_ACTIVITY, Gson().toJson(selectedCountry))
+		intent.putExtra(EXTRA_KEY_SELECTED_COUNTRY_COUNTRY_ACTIVITY, gson.toJson(selectedCountry))
 		startActivityForResult(intent, REQUEST_CODE_CHOOSE_COUNTRY_ACTIVITY)
 	}
 
@@ -134,7 +134,7 @@ class ValidateCredentialsActivity : BaseActivity(),
 		if (requestCode == REQUEST_CODE_CHOOSE_COUNTRY_ACTIVITY) {
 			selectedCountry = when(resultCode) {
 				Activity.RESULT_OK -> {
-					Gson().fromJson(
+					gson.fromJson(
 						data?.getStringExtra(EXTRA_KEY_SELECTED_COUNTRY_COUNTRY_ACTIVITY),
 						Country::class.java
 					)

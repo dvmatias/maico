@@ -1,7 +1,7 @@
 package com.matias.cogui.common.dependencyinjection.presentation
 
-import com.matias.cogui.common.dependencyinjection.utils.InternetConnectivityManager
-import com.matias.cogui.common.managers.SharedPreferencesManager
+import com.matias.cogui.common.utils.managers.InternetConnectivityManager
+import com.matias.cogui.common.utils.managers.SharedPreferencesManager
 import com.matias.cogui.screens.choosecountry.FetchCountryListInteractor
 import com.matias.cogui.screens.splash.CheckCredentialsInteractor
 import com.matias.cogui.screens.splash.CheckNetworkStatusInteractor

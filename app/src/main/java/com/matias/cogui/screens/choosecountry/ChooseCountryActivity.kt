@@ -21,6 +21,7 @@ class ChooseCountryActivity : BaseActivity(),
 
 	@Inject lateinit var presenter: ChooseCountryPresenter
 	@Inject lateinit var adapter: CountryListAdapter
+	@Inject lateinit var gson: Gson
 
 	private lateinit var selectedCountry: Country
 
@@ -50,7 +51,7 @@ class ChooseCountryActivity : BaseActivity(),
 	}
 
 	private fun getExtras() {
-		selectedCountry = Gson().fromJson(
+		selectedCountry = gson.fromJson(
 			intent.getStringExtra(EXTRA_KEY_SELECTED_COUNTRY_COUNTRY_ACTIVITY),
 			Country::class.java
 		)
@@ -85,7 +86,7 @@ class ChooseCountryActivity : BaseActivity(),
 			val intent = Intent()
 			intent.putExtra(
 				EXTRA_KEY_SELECTED_COUNTRY_COUNTRY_ACTIVITY,
-				Gson().toJson(selectedCountry)
+				gson.toJson(selectedCountry)
 			)
 			setResult(Activity.RESULT_OK, intent)
 		} else {

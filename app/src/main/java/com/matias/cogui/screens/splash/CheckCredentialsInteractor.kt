@@ -1,6 +1,6 @@
 package com.matias.cogui.screens.splash
 
-import com.matias.cogui.common.managers.SharedPreferencesManager
+import com.matias.cogui.common.utils.managers.SharedPreferencesManager
 
 class CheckCredentialsInteractor(private var sharedPreferencesManager: SharedPreferencesManager) {
 
