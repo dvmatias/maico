@@ -7,10 +7,16 @@ import android.util.AttributeSet
 import android.view.View
 import android.widget.LinearLayout
 import com.matias.cogui.R
+import com.matias.cogui.common.model.objects.Country
+import com.matias.cogui.common.utils.ImageLoader
 import kotlinx.android.synthetic.main.view_country_phone_selector.view.*
+import javax.inject.Inject
 
 class ViewCountryPhoneSelector(context: Context, attrs: AttributeSet) :
 		LinearLayout(context, attrs), View.OnClickListener, TextWatcher {
+
+	@Inject
+	lateinit var imageLoader: ImageLoader
 
     private lateinit var listener: Listener
 
@@ -49,5 +55,10 @@ class ViewCountryPhoneSelector(context: Context, attrs: AttributeSet) :
         else
             throw IllegalAccessException("Calling Activity must implement ViewCountryPhoneSelector.Listener interface.")
     }
+
+	fun setCountry(selectedCountry: Country, imageLoader: ImageLoader) {
+		imageLoader.loadImage(iv_flag, selectedCountry.url)
+		tv_code.text = selectedCountry.code
+	}
 
 }

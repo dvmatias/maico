@@ -1,7 +1,7 @@
 package com.matias.cogui.common.dependencyinjection.application
 
 import android.content.Context
-import com.matias.cogui.common.dependencyinjection.utils.InternetConnectivityManager
+import com.matias.cogui.common.utils.managers.InternetConnectivityManager
 import dagger.Module
 import dagger.Provides
 

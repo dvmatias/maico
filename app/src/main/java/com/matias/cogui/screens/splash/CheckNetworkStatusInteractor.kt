@@ -1,7 +1,7 @@
 package com.matias.cogui.screens.splash
 
 import android.os.Handler
-import com.matias.cogui.common.dependencyinjection.utils.InternetConnectivityManager
+import com.matias.cogui.common.utils.managers.InternetConnectivityManager
 
 class CheckNetworkStatusInteractor(private var internetConnectivityManager: InternetConnectivityManager) {
 

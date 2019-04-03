@@ -1,4 +1,4 @@
-package com.matias.cogui.common.dependencyinjection.utils
+package com.matias.cogui.common.utils.managers
 
 import android.content.Context
 import android.net.ConnectivityManager

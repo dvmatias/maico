@@ -24,8 +24,8 @@ class ChooseCountryPresenter(
 		val countryList = countrySchema.countryList.map {
 			Country(it.name, it.initials, it.url, it.code)
 		}
-
-		view?.setCountryList(countryList)
+		view?.setData(countryList)
+		view?.showLoading(false)
 	}
 
 	override fun onFailure() {
