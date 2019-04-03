@@ -25,19 +25,37 @@
 		android:background="@drawable/shape_view_country_phone_selector_bg"
 		android:orientation="horizontal" >
 
-		<!-- Country Flag Plus Country Phone Prefix. -->
-		<TextView
+		<LinearLayout
 			android:id="@+id/btn_country"
 			android:layout_width="wrap_content"
 			android:layout_height="match_parent"
-			android:paddingStart="@dimen/dimen_8dp"
-			android:paddingEnd="@dimen/dimen_8dp"
-			android:gravity="center"
-			android:minWidth="@dimen/dimen_64dp"
-			android:drawablePadding="@dimen/dimen_4dp"
-			android:drawableEnd="@drawable/ic_arrow_drop_down_dark_24dp"
-			android:drawableStart="@drawable/img_arg_flag"
-			android:text="+54" />
+			android:orientation="horizontal"
+			android:paddingStart="@dimen/dimen_4dp"
+			android:paddingEnd="@dimen/dimen_4dp"
+			android:layout_gravity="center_vertical"
+			tools:ignore="UseCompoundDrawables">
+
+			<!-- Country Flag. -->
+			<ImageView
+				android:id="@+id/iv_flag"
+				android:layout_width="@dimen/dimen_32dp"
+				android:layout_height="match_parent"
+				android:adjustViewBounds="true"
+				android:padding="@dimen/dimen_4dp"
+				android:src="@drawable/img_arg_flag"
+				android:contentDescription="@null"/>
+
+			<!-- Country Code. -->
+			<TextView
+				android:id="@+id/tv_code"
+				android:layout_width="wrap_content"
+				android:layout_height="match_parent"
+				android:lines="1"
+				android:paddingStart="@dimen/dimen_2dp"
+				android:paddingEnd="@dimen/dimen_2dp"
+				android:gravity="center"
+				android:drawableEnd="@drawable/ic_arrow_drop_down_dark_24dp"/>
+		</LinearLayout>
 
 		<View
             android:layout_width="1dp"
