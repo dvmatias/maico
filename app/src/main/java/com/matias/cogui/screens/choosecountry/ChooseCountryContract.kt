@@ -7,6 +7,7 @@ import com.matias.cogui.common.mvp.BaseView
 interface ChooseCountryContract {
 
 	interface View : BaseView {
+		fun finishWithResult(selectedCountry: Country?)
 		fun setData(countryList: List<Country>)
 		fun showEmptyState()
 		fun showLoading(show: Boolean)

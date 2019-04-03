@@ -15,12 +15,12 @@ import kotlinx.android.synthetic.main.item_country.view.*
 class CountryListAdapter(listener: ClickListener, var imageLoader: ImageLoader) :
 	RecyclerView.Adapter<CountryViewHolder>() {
 
-	private var countryList: List<Country>? = null
+	private lateinit var countryList: List<Country>
 
 	private var clickListener: ClickListener = listener
 
 	interface ClickListener {
-		fun onItemClick(itemCountry: Country?)
+		fun onItemClick(itemCountry: Country)
 	}
 
 	fun setData(countryList: List<Country>) {
@@ -45,7 +45,7 @@ class CountryListAdapter(listener: ClickListener, var imageLoader: ImageLoader) 
 	}
 
 	override fun onBindViewHolder(holder: CountryViewHolder, position: Int) {
-		val itemCountry = countryList!![position]
+		val itemCountry = countryList[position]
 		imageLoader.loadImage(holder.ivFlag, itemCountry.url)
 		holder.tvName.tv_name.text = itemCountry.name
 		holder.tvCode.tv_code.text = itemCountry.code
@@ -54,6 +54,6 @@ class CountryListAdapter(listener: ClickListener, var imageLoader: ImageLoader) 
 		}
 	}
 
-	override fun getItemCount(): Int = if (countryList != null) countryList!!.size else 0
+	override fun getItemCount(): Int = countryList.size
 
 }
