@@ -16,7 +16,6 @@ class CountryListAdapter(listener: ClickListener, var imageLoader: ImageLoader) 
 	RecyclerView.Adapter<CountryViewHolder>() {
 
 	private lateinit var countryList: List<Country>
-
 	private var clickListener: ClickListener = listener
 
 	interface ClickListener {
