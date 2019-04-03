@@ -1,8 +1,8 @@
-package com.matias.cogui.screens.validatecredentials
+package com.matias.cogui.screens.registerphone
 
 import com.matias.cogui.common.mvp.BasePresenterImpl
 
-class ValidateCredentialsPresenter(v: ValidateCredentialsContract.View) : BasePresenterImpl<ValidateCredentialsContract.View>(), ValidateCredentialsContract.Presenter {
+class RegisterPhonePresenter(v: RegisterPhoneContract.View) : BasePresenterImpl<RegisterPhoneContract.View>(), RegisterPhoneContract.Presenter {
     override fun checkInternetConnectionStatus() {
         TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
     }

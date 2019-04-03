@@ -1,9 +1,8 @@
-package com.matias.cogui.screens.validatecredentials
+package com.matias.cogui.screens.registerphone
 
 import android.app.Activity
 import android.content.Intent
 import android.os.Bundle
-import android.util.Log
 import android.view.View
 import com.google.gson.Gson
 import com.matias.cogui.R
@@ -18,12 +17,12 @@ import com.matias.cogui.screens.choosecountry.ChooseCountryActivity
 import kotlinx.android.synthetic.main.activity_validate_credentials.*
 import javax.inject.Inject
 
-class ValidateCredentialsActivity : BaseActivity(),
-	ValidateCredentialsContract.View,
+class RegisterPhoneActivity : BaseActivity(),
+	RegisterPhoneContract.View,
 	ViewCountryPhoneSelector.Listener,
 	ViewAgreement.Listener {
 
-	@Inject lateinit var presenter: ValidateCredentialsPresenter
+	@Inject lateinit var presenter: RegisterPhonePresenter
 	@Inject lateinit var gson: Gson
 	@Inject lateinit var imageLoader: ImageLoader
 
@@ -32,7 +31,8 @@ class ValidateCredentialsActivity : BaseActivity(),
 
 	companion object {
 		// Class tag.
-		private val TAG = ValidateCredentialsActivity::class.java.simpleName
+		@Suppress("unused")
+		private val TAG = RegisterPhoneActivity::class.java.simpleName
 	}
 
 	override fun onCreate(savedInstanceState: Bundle?) {
@@ -54,7 +54,7 @@ class ValidateCredentialsActivity : BaseActivity(),
 	}
 
 	/*
-     * MVP - [ValidateCredentialsContract.View] interface implementation.
+     * MVP - [RegisterPhoneContract.View] interface implementation.
      */
 
 	override fun goToChooseCountryScreen() {

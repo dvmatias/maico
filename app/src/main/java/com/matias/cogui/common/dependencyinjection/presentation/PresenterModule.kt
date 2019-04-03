@@ -8,8 +8,8 @@ import com.matias.cogui.screens.splash.CheckCredentialsInteractor
 import com.matias.cogui.screens.splash.CheckNetworkStatusInteractor
 import com.matias.cogui.screens.splash.SplashContract
 import com.matias.cogui.screens.splash.SplashPresenter
-import com.matias.cogui.screens.validatecredentials.ValidateCredentialsContract
-import com.matias.cogui.screens.validatecredentials.ValidateCredentialsPresenter
+import com.matias.cogui.screens.registerphone.RegisterPhoneContract
+import com.matias.cogui.screens.registerphone.RegisterPhonePresenter
 import dagger.Module
 import dagger.Provides
 
@@ -25,7 +25,7 @@ class PresenterModule {
 			SplashPresenter(view as SplashContract.View, checkNetworkStatusInteractor, checkCredentialsInteractor)
 
 	@Provides
-	fun getValidateCredentialsPresenter(view: BaseView) = ValidateCredentialsPresenter(view as ValidateCredentialsContract.View)
+	fun getRegisterPhonePresenter(view: BaseView) = RegisterPhonePresenter(view as RegisterPhoneContract.View)
 
 	@Provides
 	fun getChooseCountryPresenter(

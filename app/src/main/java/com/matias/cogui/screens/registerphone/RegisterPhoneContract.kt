@@ -1,10 +1,10 @@
-package com.matias.cogui.screens.validatecredentials
+package com.matias.cogui.screens.registerphone
 
 import com.matias.cogui.common.model.objects.Country
 import com.matias.cogui.common.mvp.BasePresenter
 import com.matias.cogui.common.mvp.BaseView
 
-interface ValidateCredentialsContract {
+interface RegisterPhoneContract {
 
     interface View: BaseView {
 
