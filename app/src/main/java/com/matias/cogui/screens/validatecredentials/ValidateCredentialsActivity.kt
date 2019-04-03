@@ -11,6 +11,7 @@ import com.matias.cogui.common.Constants.Companion.EXTRA_KEY_SELECTED_COUNTRY_CO
 import com.matias.cogui.common.Constants.Companion.REQUEST_CODE_CHOOSE_COUNTRY_ACTIVITY
 import com.matias.cogui.common.model.objects.Country
 import com.matias.cogui.common.mvp.BaseActivity
+import com.matias.cogui.common.utils.ImageLoader
 import com.matias.cogui.common.views.ViewAgreement
 import com.matias.cogui.common.views.ViewCountryPhoneSelector
 import com.matias.cogui.screens.choosecountry.ChooseCountryActivity
@@ -24,6 +25,7 @@ class ValidateCredentialsActivity : BaseActivity(),
 
 	@Inject lateinit var presenter: ValidateCredentialsPresenter
 	@Inject lateinit var gson: Gson
+	@Inject lateinit var imageLoader: ImageLoader
 
 	private var isAgreementViewVisible: Boolean = false
 	private lateinit var selectedCountry: Country
@@ -78,7 +80,7 @@ class ValidateCredentialsActivity : BaseActivity(),
 	}
 
 	override fun showSelectedCountry() {
-		Log.d(TAG, "*** MABEL showSelectedCountry() $selectedCountry")
+		v_country_phone_selector.setCountry(this.selectedCountry, imageLoader)
 	}
 
 	override fun showTermsAndConditions(show: Boolean) {
