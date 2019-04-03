@@ -9,8 +9,8 @@ import android.widget.LinearLayout
 import com.matias.cogui.R
 import com.matias.cogui.common.model.objects.Country
 import com.matias.cogui.common.utils.ImageLoader
-import kotlinx.android.synthetic.main.view_country_phone_selector.view.*
 import javax.inject.Inject
+import kotlinx.android.synthetic.main.view_country_phone_selector.view.*
 
 class ViewCountryPhoneSelector(context: Context, attrs: AttributeSet) :
 		LinearLayout(context, attrs), View.OnClickListener, TextWatcher {

@@ -16,7 +16,7 @@ class FetchCountryListInteractor {
 		Log.d(FetchCountryListInteractor::class.java.simpleName, "*** MABEL fetch() get country list.")
 		Handler().postDelayed({
 			listener.onSuccess(getMockCountryList())
-		},1000)
+		},750)
 	}
 
 	private fun getMockCountryList(): CountrySchema {
