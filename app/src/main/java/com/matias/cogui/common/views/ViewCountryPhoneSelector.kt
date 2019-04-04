@@ -15,17 +15,33 @@ import kotlinx.android.synthetic.main.view_country_phone_selector.view.*
 class ViewCountryPhoneSelector(context: Context, attrs: AttributeSet) :
 		LinearLayout(context, attrs), View.OnClickListener, TextWatcher {
 
-	@Inject
-	lateinit var imageLoader: ImageLoader
-
     private lateinit var listener: Listener
+    var phoneNumber: String
+
+    init {
+        inflate(context, R.layout.view_country_phone_selector, this)
+
+        btn_country.setOnClickListener(this)
+        et_phone.addTextChangedListener(this)
+        hideError()
+
+        phoneNumber = ""
+
+        setClickListener()
+    }
 
     override fun afterTextChanged(s: Editable?) {}
 
     override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {}
 
     override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
-        if (!s.isNullOrBlank() && s.isNotEmpty()) listener.onPhoneNotEmpty() else listener.onPhoneEmpty()
+        if (!s.isNullOrBlank() && s.isNotEmpty()) {
+            listener.onPhoneNotEmpty()
+            phoneNumber = s.toString()
+        } else {
+            listener.onPhoneEmpty()
+            phoneNumber = ""
+        }
     }
 
     override fun onClick(v: View?) {
@@ -38,16 +54,6 @@ class ViewCountryPhoneSelector(context: Context, attrs: AttributeSet) :
         fun onCountryClick()
         fun onPhoneEmpty()
         fun onPhoneNotEmpty()
-    }
-
-    init {
-        inflate(context, R.layout.view_country_phone_selector, this)
-
-        btn_country.setOnClickListener(this)
-        et_phone.addTextChangedListener(this)
-	    hideError()
-
-        setClickListener()
     }
 
     private fun setClickListener() {

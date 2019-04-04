@@ -20,7 +20,8 @@ import javax.inject.Inject
 class RegisterPhoneActivity : BaseActivity(),
 	RegisterPhoneContract.View,
 	ViewCountryPhoneSelector.Listener,
-	ViewAgreement.Listener {
+	ViewAgreement.Listener,
+	View.OnClickListener{
 
 	@Inject lateinit var presenter: RegisterPhonePresenter
 	@Inject lateinit var gson: Gson
@@ -41,6 +42,8 @@ class RegisterPhoneActivity : BaseActivity(),
 		getPresentationComponent().inject(this)
 		// Construct a default country object.
 		setSelectedCountry(Country())
+
+		btn_get_started.setOnClickListener(this)
 	}
 
 	override fun onBackPressed() {
@@ -63,8 +66,12 @@ class RegisterPhoneActivity : BaseActivity(),
 		startActivityForResult(intent, REQUEST_CODE_CHOOSE_COUNTRY_ACTIVITY)
 	}
 
-	override fun goToHomeScreen() {
+	override fun goToValidatePhoneScreen() {
 		TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+	}
+
+	override fun onGetStartedClick() {
+		presenter.validatePhoneNumber(selectedCountry.code, v_country_phone_selector.phoneNumber)
 	}
 
 	override fun setSelectedCountry(country: Country) {
@@ -125,6 +132,16 @@ class RegisterPhoneActivity : BaseActivity(),
 
 	override fun onAgreementRejected() {
 		showGetStartButton(false)
+	}
+
+	/*
+	 * [View.OnClickListener] interface implementation.
+	 */
+
+	override fun onClick(v: View?) {
+		when(v?.id) {
+			btn_get_started.id -> onGetStartedClick()
+		}
 	}
 
 	/*
