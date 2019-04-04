@@ -1,8 +1,8 @@
 package com.matias.cogui.common.dependencyinjection.presentation
 
 import android.content.Context
-import com.google.i18n.phonenumbers.PhoneNumberUtil
 import com.matias.cogui.common.utils.ImageLoader
+import com.matias.cogui.common.utils.managers.PhoneManager
 import com.matias.cogui.screens.choosecountry.CountryListAdapter
 import dagger.Module
 import dagger.Provides
@@ -14,12 +14,12 @@ class AdapterModule {
     fun getCountryListAdapter(
         context: Context,
         imageLoader: ImageLoader,
-        phoneNumberUtil: PhoneNumberUtil
+        phoneManager: PhoneManager
     ): CountryListAdapter =
         if (context is CountryListAdapter.ClickListener) CountryListAdapter(
             context as CountryListAdapter.ClickListener,
             imageLoader,
-            phoneNumberUtil
+            phoneManager
         )
         else throw ExceptionInInitializerError("Calling Activity mus implement CountryListAdapter.ClickListener interface.")
 

@@ -71,7 +71,7 @@ class RegisterPhoneActivity : BaseActivity(),
 	}
 
 	override fun onGetStartedClick() {
-		presenter.validatePhoneNumber(selectedCountry.code, v_country_phone_selector.phoneNumber)
+		presenter.validatePhoneNumber(selectedCountry.nameCode, v_country_phone_selector.phoneNumber)
 	}
 
 	override fun setSelectedCountry(country: Country) {

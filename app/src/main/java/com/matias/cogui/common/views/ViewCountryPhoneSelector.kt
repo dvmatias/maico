@@ -9,7 +9,6 @@ import android.widget.LinearLayout
 import com.matias.cogui.R
 import com.matias.cogui.common.model.objects.Country
 import com.matias.cogui.common.utils.ImageLoader
-import javax.inject.Inject
 import kotlinx.android.synthetic.main.view_country_phone_selector.view.*
 
 class ViewCountryPhoneSelector(context: Context, attrs: AttributeSet) :
@@ -65,7 +64,7 @@ class ViewCountryPhoneSelector(context: Context, attrs: AttributeSet) :
 
 	fun setCountry(selectedCountry: Country, imageLoader: ImageLoader) {
 		imageLoader.loadImage(iv_flag, selectedCountry.url)
-		tv_code.text = selectedCountry.code
+		tv_code.text = selectedCountry.nameCode
 	}
 
 	private fun showError(errorMessage: String) {
