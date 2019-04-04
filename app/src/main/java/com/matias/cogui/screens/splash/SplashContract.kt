@@ -11,7 +11,7 @@ interface SplashContract {
         fun checkCredentials() // Verify if the user his logged.
         fun checkInternetConnectionStatus() // Ask presenter to check Internet connection status.
         fun gotToHomeScreen() // Launch HomeActivity.
-        fun goToValidateCredentialsScreen() // Launch ValidateCredentialsActivity.`
+        fun goToRegisterPhoneScreen() // Launch RegisterPhoneActivity.`
         fun showNeedPermissionDialog()
         fun showNoConnectionErrorDialog() // Show error for no Internet connection status.
 

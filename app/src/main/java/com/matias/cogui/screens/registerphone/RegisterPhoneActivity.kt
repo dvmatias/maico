@@ -1,9 +1,9 @@
-package com.matias.cogui.screens.validatecredentials
+package com.matias.cogui.screens.registerphone
 
 import android.app.Activity
 import android.content.Intent
 import android.os.Bundle
-import android.util.Log
+import android.support.v4.app.DialogFragment
 import android.view.View
 import com.google.gson.Gson
 import com.matias.cogui.R
@@ -12,27 +12,33 @@ import com.matias.cogui.common.Constants.Companion.REQUEST_CODE_CHOOSE_COUNTRY_A
 import com.matias.cogui.common.model.objects.Country
 import com.matias.cogui.common.mvp.BaseActivity
 import com.matias.cogui.common.utils.ImageLoader
+import com.matias.cogui.common.utils.managers.DialogsManager
+import com.matias.cogui.common.utils.managers.PhoneManager
 import com.matias.cogui.common.views.ViewAgreement
 import com.matias.cogui.common.views.ViewCountryPhoneSelector
 import com.matias.cogui.screens.choosecountry.ChooseCountryActivity
 import kotlinx.android.synthetic.main.activity_validate_credentials.*
 import javax.inject.Inject
 
-class ValidateCredentialsActivity : BaseActivity(),
-	ValidateCredentialsContract.View,
+class RegisterPhoneActivity : BaseActivity(),
+	RegisterPhoneContract.View,
 	ViewCountryPhoneSelector.Listener,
-	ViewAgreement.Listener {
+	ViewAgreement.Listener,
+	View.OnClickListener{
 
-	@Inject lateinit var presenter: ValidateCredentialsPresenter
+	@Inject lateinit var presenter: RegisterPhonePresenter
 	@Inject lateinit var gson: Gson
 	@Inject lateinit var imageLoader: ImageLoader
+	@Inject lateinit var phoneManager: PhoneManager
+	@Inject lateinit var dialogsManager: DialogsManager
 
 	private var isAgreementViewVisible: Boolean = false
 	private lateinit var selectedCountry: Country
 
 	companion object {
 		// Class tag.
-		private val TAG = ValidateCredentialsActivity::class.java.simpleName
+		@Suppress("unused")
+		private val TAG = RegisterPhoneActivity::class.java.simpleName
 	}
 
 	override fun onCreate(savedInstanceState: Bundle?) {
@@ -41,6 +47,8 @@ class ValidateCredentialsActivity : BaseActivity(),
 		getPresentationComponent().inject(this)
 		// Construct a default country object.
 		setSelectedCountry(Country())
+
+		btn_get_started.setOnClickListener(this)
 	}
 
 	override fun onBackPressed() {
@@ -54,7 +62,7 @@ class ValidateCredentialsActivity : BaseActivity(),
 	}
 
 	/*
-     * MVP - [ValidateCredentialsContract.View] interface implementation.
+     * MVP - [RegisterPhoneContract.View] interface implementation.
      */
 
 	override fun goToChooseCountryScreen() {
@@ -63,8 +71,12 @@ class ValidateCredentialsActivity : BaseActivity(),
 		startActivityForResult(intent, REQUEST_CODE_CHOOSE_COUNTRY_ACTIVITY)
 	}
 
-	override fun goToHomeScreen() {
+	override fun goToValidatePhoneScreen() {
 		TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+	}
+
+	override fun onGetStartedClick() {
+		presenter.validatePhoneNumber(selectedCountry.nameCode, v_country_phone_selector.phoneNumber)
 	}
 
 	override fun setSelectedCountry(country: Country) {
@@ -80,7 +92,7 @@ class ValidateCredentialsActivity : BaseActivity(),
 	}
 
 	override fun showSelectedCountry() {
-		v_country_phone_selector.setCountry(this.selectedCountry, imageLoader)
+		v_country_phone_selector.showCountryInfo(this.selectedCountry, imageLoader, phoneManager)
 	}
 
 	override fun showTermsAndConditions(show: Boolean) {
@@ -90,11 +102,11 @@ class ValidateCredentialsActivity : BaseActivity(),
 		agreement_view.visibility = if (show) View.VISIBLE else View.GONE
 	}
 
-	override fun showWrongCountryInlineError() {
-		TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+	override fun showWrongCountryDialog() {
+//		dialogsManager.showRetainedDialogWithId(DialogFragment()) TODO
 	}
 
-	override fun showWrongNumberInlineError() {
+	override fun showWrongNumberDialog() {
 		TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
 	}
 
@@ -125,6 +137,16 @@ class ValidateCredentialsActivity : BaseActivity(),
 
 	override fun onAgreementRejected() {
 		showGetStartButton(false)
+	}
+
+	/*
+	 * [View.OnClickListener] interface implementation.
+	 */
+
+	override fun onClick(v: View?) {
+		when(v?.id) {
+			btn_get_started.id -> onGetStartedClick()
+		}
 	}
 
 	/*

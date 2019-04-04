@@ -5,7 +5,7 @@ import android.os.Bundle
 import android.util.Log
 import com.matias.cogui.R
 import com.matias.cogui.common.mvp.BaseActivity
-import com.matias.cogui.screens.validatecredentials.ValidateCredentialsActivity
+import com.matias.cogui.screens.registerphone.RegisterPhoneActivity
 import javax.inject.Inject
 
 class SplashActivity : BaseActivity(), SplashContract.View {
@@ -48,8 +48,8 @@ class SplashActivity : BaseActivity(), SplashContract.View {
         Log.d(TAG, "MABEL - Go to HomeScreen.")
     }
 
-    override fun goToValidateCredentialsScreen() {
-        val intent = Intent(this, ValidateCredentialsActivity::class.java)
+    override fun goToRegisterPhoneScreen() {
+        val intent = Intent(this, RegisterPhoneActivity::class.java)
         startActivity(intent)
         finish()
     }

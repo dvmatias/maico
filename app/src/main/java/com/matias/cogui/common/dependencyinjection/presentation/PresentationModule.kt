@@ -7,6 +7,7 @@ import com.google.gson.Gson
 import com.matias.cogui.common.utils.managers.SharedPreferencesManager
 import com.matias.cogui.common.mvp.BaseView
 import com.matias.cogui.common.utils.ImageLoader
+import com.matias.cogui.common.utils.managers.DialogsManager
 import dagger.Module
 import dagger.Provides
 
@@ -27,13 +28,15 @@ class PresentationModule(
     fun getView(): BaseView = view
 
     @Provides
-    fun getSharedPreferencesManager(): SharedPreferencesManager
-            = SharedPreferencesManager(getContext())
+    fun getSharedPreferencesManager(): SharedPreferencesManager = SharedPreferencesManager(getContext())
 
-	@Provides
-	fun getImageLoader(): ImageLoader = ImageLoader(getActivity())
+    @Provides
+    fun getImageLoader(): ImageLoader = ImageLoader(getActivity())
 
-	@Provides
-	fun getGson(): Gson = Gson()
+    @Provides
+    fun getGson(): Gson = Gson()
+
+    @Provides
+    fun getDialogsManager(): DialogsManager = DialogsManager(fragmentManager)
 
 }
