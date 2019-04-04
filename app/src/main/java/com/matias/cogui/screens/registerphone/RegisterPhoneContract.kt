@@ -6,7 +6,7 @@ import com.matias.cogui.common.mvp.BaseView
 
 interface RegisterPhoneContract {
 
-    interface View: BaseView {
+    interface View : BaseView {
 
         fun goToChooseCountryScreen() // Launch ChooseCountryActivity.
         fun goToValidatePhoneScreen() // TODO
@@ -21,11 +21,11 @@ interface RegisterPhoneContract {
 
     }
 
-    interface Presenter: BasePresenter<View> {
+    interface Presenter : BasePresenter<View> {
 
         fun checkInternetConnectionStatus() // Verify Internet connection status.
         fun validateCountry() // Verify if the selected country number is correct.
-        fun validatePhoneNumber(code: String, number: String) // Verify if the phone number is correct.
+        fun validatePhoneNumber(nameCode: String, number: String) // Verify if the phone number is correct.
 
     }
 
