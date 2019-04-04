@@ -3,6 +3,7 @@ package com.matias.cogui.screens.registerphone
 import android.app.Activity
 import android.content.Intent
 import android.os.Bundle
+import android.support.v4.app.DialogFragment
 import android.view.View
 import com.google.gson.Gson
 import com.matias.cogui.R
@@ -11,6 +12,7 @@ import com.matias.cogui.common.Constants.Companion.REQUEST_CODE_CHOOSE_COUNTRY_A
 import com.matias.cogui.common.model.objects.Country
 import com.matias.cogui.common.mvp.BaseActivity
 import com.matias.cogui.common.utils.ImageLoader
+import com.matias.cogui.common.utils.managers.DialogsManager
 import com.matias.cogui.common.utils.managers.PhoneManager
 import com.matias.cogui.common.views.ViewAgreement
 import com.matias.cogui.common.views.ViewCountryPhoneSelector
@@ -28,6 +30,7 @@ class RegisterPhoneActivity : BaseActivity(),
 	@Inject lateinit var gson: Gson
 	@Inject lateinit var imageLoader: ImageLoader
 	@Inject lateinit var phoneManager: PhoneManager
+	@Inject lateinit var dialogsManager: DialogsManager
 
 	private var isAgreementViewVisible: Boolean = false
 	private lateinit var selectedCountry: Country
@@ -100,7 +103,7 @@ class RegisterPhoneActivity : BaseActivity(),
 	}
 
 	override fun showWrongCountryDialog() {
-		TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+//		dialogsManager.showRetainedDialogWithId(DialogFragment()) TODO
 	}
 
 	override fun showWrongNumberDialog() {
