@@ -11,6 +11,7 @@ import com.matias.cogui.common.Constants.Companion.REQUEST_CODE_CHOOSE_COUNTRY_A
 import com.matias.cogui.common.model.objects.Country
 import com.matias.cogui.common.mvp.BaseActivity
 import com.matias.cogui.common.utils.ImageLoader
+import com.matias.cogui.common.utils.managers.PhoneManager
 import com.matias.cogui.common.views.ViewAgreement
 import com.matias.cogui.common.views.ViewCountryPhoneSelector
 import com.matias.cogui.screens.choosecountry.ChooseCountryActivity
@@ -26,6 +27,7 @@ class RegisterPhoneActivity : BaseActivity(),
 	@Inject lateinit var presenter: RegisterPhonePresenter
 	@Inject lateinit var gson: Gson
 	@Inject lateinit var imageLoader: ImageLoader
+	@Inject lateinit var phoneManager: PhoneManager
 
 	private var isAgreementViewVisible: Boolean = false
 	private lateinit var selectedCountry: Country
@@ -87,7 +89,7 @@ class RegisterPhoneActivity : BaseActivity(),
 	}
 
 	override fun showSelectedCountry() {
-		v_country_phone_selector.setCountry(this.selectedCountry, imageLoader)
+		v_country_phone_selector.showCountryInfo(this.selectedCountry, imageLoader, phoneManager)
 	}
 
 	override fun showTermsAndConditions(show: Boolean) {

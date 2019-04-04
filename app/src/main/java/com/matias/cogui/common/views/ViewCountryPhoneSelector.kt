@@ -9,6 +9,7 @@ import android.widget.LinearLayout
 import com.matias.cogui.R
 import com.matias.cogui.common.model.objects.Country
 import com.matias.cogui.common.utils.ImageLoader
+import com.matias.cogui.common.utils.managers.PhoneManager
 import kotlinx.android.synthetic.main.view_country_phone_selector.view.*
 
 class ViewCountryPhoneSelector(context: Context, attrs: AttributeSet) :
@@ -34,12 +35,12 @@ class ViewCountryPhoneSelector(context: Context, attrs: AttributeSet) :
     override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {}
 
     override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
-        if (!s.isNullOrBlank() && s.isNotEmpty()) {
+        phoneNumber = if (!s.isNullOrBlank() && s.isNotEmpty()) {
             listener.onPhoneNotEmpty()
-            phoneNumber = s.toString()
+            s.toString()
         } else {
             listener.onPhoneEmpty()
-            phoneNumber = ""
+            ""
         }
     }
 
@@ -62,9 +63,9 @@ class ViewCountryPhoneSelector(context: Context, attrs: AttributeSet) :
             throw IllegalAccessException("Calling Activity must implement ViewCountryPhoneSelector.Listener interface.")
     }
 
-	fun setCountry(selectedCountry: Country, imageLoader: ImageLoader) {
+	fun showCountryInfo(selectedCountry: Country, imageLoader: ImageLoader, phoneManager: PhoneManager) {
 		imageLoader.loadImage(iv_flag, selectedCountry.url)
-		tv_code.text = selectedCountry.nameCode
+		tv_code.text = phoneManager.getFormattedCountryCodeForRegion(selectedCountry.nameCode)
 	}
 
 	private fun showError(errorMessage: String) {
