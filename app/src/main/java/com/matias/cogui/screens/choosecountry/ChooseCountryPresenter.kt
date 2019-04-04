@@ -22,7 +22,7 @@ class ChooseCountryPresenter(
 
 	override fun onSuccess(countrySchema: CountrySchema) {
 		val countryList = countrySchema.countryList.map {
-			Country(it.name, it.initials, it.url, it.code)
+			Country(it.name, it.code, it.url)
 		}
 		view?.setData(countryList)
 		view?.showLoading(false)
