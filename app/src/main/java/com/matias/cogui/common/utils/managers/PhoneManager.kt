@@ -3,6 +3,7 @@ package com.matias.cogui.common.utils.managers
 import com.google.i18n.phonenumbers.PhoneNumberUtil
 import com.google.i18n.phonenumbers.Phonenumber
 
+@Suppress("unused", "MemberVisibilityCanBePrivate")
 class PhoneManager(var phoneNumberUtil: PhoneNumberUtil) {
 
     fun getFormattedCountryCodeForRegion(nameCode: String): CharSequence? {
@@ -18,11 +19,14 @@ class PhoneManager(var phoneNumberUtil: PhoneNumberUtil) {
         return phoneNumberUtil.isValidNumber(number)
     }
 
-    fun parse(numberToParse: String, defaultRegion: String): Phonenumber.PhoneNumber {
+    fun isValidCountryName(nameCode: String): Boolean = phoneNumberUtil.getCountryCodeForRegion(nameCode) != 0
+
+    fun parse(numberToParse: String, defaultRegion: String = "XX"): Phonenumber.PhoneNumber {
         return phoneNumberUtil.parse(numberToParse, defaultRegion)
     }
 
     fun parse(numberToParse: String, defaultRegion: String, phoneNumber: Phonenumber.PhoneNumber) {
         return phoneNumberUtil.parse(numberToParse, defaultRegion, phoneNumber)
     }
+
 }

@@ -99,11 +99,11 @@ class RegisterPhoneActivity : BaseActivity(),
 		agreement_view.visibility = if (show) View.VISIBLE else View.GONE
 	}
 
-	override fun showWrongCountryInlineError() {
+	override fun showWrongCountryDialog() {
 		TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
 	}
 
-	override fun showWrongNumberInlineError() {
+	override fun showWrongNumberDialog() {
 		TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
 	}
 

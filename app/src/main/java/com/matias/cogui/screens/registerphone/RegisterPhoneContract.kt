@@ -16,8 +16,8 @@ interface RegisterPhoneContract {
         fun showGetStartButton(show: Boolean) // Show/Hide "Get Started" button.
         fun showSelectedCountry()
         fun showTermsAndConditions(show: Boolean) // Show the view for terms and conditions.
-        fun showWrongCountryInlineError() // Display error for entered country.
-        fun showWrongNumberInlineError() // Display error for entered number.
+        fun showWrongCountryDialog() // Display error for entered country.
+        fun showWrongNumberDialog() // Display error for entered number.
 
     }
 

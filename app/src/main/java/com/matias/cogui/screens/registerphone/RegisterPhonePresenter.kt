@@ -19,8 +19,17 @@ class RegisterPhonePresenter(v: RegisterPhoneContract.View, private val phoneMan
     }
 
     override fun validatePhoneNumber(nameCode: String, number: String) {
-        val valid = phoneManager.isValidNumber(number, nameCode)
-        println("*** MABEL $valid")
+        val validCountry = phoneManager.isValidCountryName(nameCode)
+        val validNumber = if (validCountry) phoneManager.isValidNumber(number, nameCode) else false
+
+        if (!validCountry) // INVALID country.
+            view?.showWrongCountryDialog()
+        else {
+            if (!validNumber) // VALID country - INVALID number
+                view?.showWrongNumberDialog()
+            else // VALID country - VALID number
+                view?.goToValidatePhoneScreen()
+        }
     }
 
 }
