@@ -8,6 +8,7 @@ interface RegisterPhoneContract {
 
     interface View : BaseView {
 
+        fun goToEnterPhoneScreen() // TODO
         fun goToValidatePhoneScreen() // TODO
         fun setSelectedCountry(country: Country) // set selected (or default) country.
         fun showNoConnectionErrorDialog() // Show error for no Internet connection status.

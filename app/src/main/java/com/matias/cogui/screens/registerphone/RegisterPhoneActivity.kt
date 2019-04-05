@@ -46,14 +46,10 @@ class RegisterPhoneActivity : BaseActivity(),
 		super.onCreate(savedInstanceState)
 		setContentView(R.layout.activity_validate_credentials)
 		getPresentationComponent().inject(this)
-
-		supportFragmentManager
-			.beginTransaction()
-			.add(fl_container.id, enterPhoneFragment, "asdadasdasd")
-			.commit()
-
+		
 		// Construct a default country object.
 		setSelectedCountry(Country())
+		goToEnterPhoneScreen()
 	}
 
 	override fun onBackPressed() {
@@ -70,12 +66,19 @@ class RegisterPhoneActivity : BaseActivity(),
 	 * MVP - [RegisterPhoneContract.View] interface implementation.
 	 */
 
+	override fun goToEnterPhoneScreen() {
+		supportFragmentManager
+			.beginTransaction()
+			.add(fl_container.id, enterPhoneFragment, enterPhoneFragment.tag)
+			.commit()
+	}
+
 	override fun goToValidatePhoneScreen() {
 		Toast.makeText(this, "Go to Validate Phone Screen", Toast.LENGTH_SHORT).show()
 	}
 
 	override fun setSelectedCountry(country: Country) {
-		selectedCountry = country
+		this.selectedCountry = country
 	}
 
 	override fun showNoConnectionErrorDialog() {
@@ -83,7 +86,7 @@ class RegisterPhoneActivity : BaseActivity(),
 	}
 
 	override fun showSelectedCountry() {
-		enterPhoneFragment.showSelectedCountry(selectedCountry)
+		enterPhoneFragment.showSelectedCountry(this.selectedCountry)
 	}
 
 	override fun showWrongCountryDialog() {
