@@ -1,4 +1,4 @@
-package com.matias.cogui.screens.registerphone
+package com.matias.cogui.screens.registerphone.fragments
 
 import android.content.Context
 import android.os.Bundle

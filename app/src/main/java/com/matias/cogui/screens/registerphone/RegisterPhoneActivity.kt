@@ -15,6 +15,7 @@ import com.matias.cogui.common.utils.managers.PhoneManager
 import com.matias.cogui.common.views.ViewAgreement
 import com.matias.cogui.common.views.ViewCountryPhoneSelector
 import com.matias.cogui.screens.choosecountry.ChooseCountryActivity
+import com.matias.cogui.screens.registerphone.fragments.EnterPhoneFragment
 import kotlinx.android.synthetic.main.activity_validate_credentials.*
 import javax.inject.Inject
 
@@ -46,7 +47,7 @@ class RegisterPhoneActivity : BaseActivity(),
 		super.onCreate(savedInstanceState)
 		setContentView(R.layout.activity_validate_credentials)
 		getPresentationComponent().inject(this)
-		
+
 		// Construct a default country object.
 		setSelectedCountry(Country())
 		goToEnterPhoneScreen()
@@ -142,7 +143,7 @@ class RegisterPhoneActivity : BaseActivity(),
 	}
 
 	/**
-	 * On Activity Result-
+	 * On Activity Result.
 	 */
 
 	override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
