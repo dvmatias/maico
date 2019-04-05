@@ -1,16 +1,14 @@
 package com.matias.cogui.screens.registerphone.fragments
 
 import android.content.Context
-import android.net.Uri
 import android.os.Bundle
-import android.support.v4.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-
 import com.matias.cogui.R
+import com.matias.cogui.common.mvp.BaseFragment
 
-class ValidatePhoneFragment : Fragment() {
+class ValidatePhoneFragment : BaseFragment() {
 
 	private var listener: Listener? = null
 

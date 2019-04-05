@@ -1,5 +1,6 @@
 package com.matias.cogui.screens.registerphone
 
+import android.os.Handler
 import com.matias.cogui.common.mvp.BasePresenterImpl
 import com.matias.cogui.common.utils.managers.PhoneManager
 
@@ -15,7 +16,10 @@ class RegisterPhonePresenter(v: RegisterPhoneContract.View, private val phoneMan
     }
 
     override fun validateCountry() {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+        view?.showLoadingDialog()
+	    Handler().postDelayed({
+		    view?.goToValidatePhoneScreen()
+	    }, 2000)
     }
 
     override fun validatePhoneNumber(nameCode: String, number: String) {
@@ -28,7 +32,7 @@ class RegisterPhonePresenter(v: RegisterPhoneContract.View, private val phoneMan
             if (!validNumber) // VALID country - INVALID number
                 view?.showWrongNumberDialog()
             else // VALID country - VALID number
-                view?.goToValidatePhoneScreen()
+                validateCountry()
         }
     }
 

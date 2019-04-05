@@ -3,6 +3,7 @@ package com.matias.cogui.screens.registerphone
 import android.app.Activity
 import android.content.Intent
 import android.os.Bundle
+import android.support.v4.app.FragmentManager
 import android.widget.Toast
 import com.google.gson.Gson
 import com.matias.cogui.R
@@ -10,18 +11,20 @@ import com.matias.cogui.common.Constants.Companion.EXTRA_KEY_SELECTED_COUNTRY_CO
 import com.matias.cogui.common.Constants.Companion.REQUEST_CODE_CHOOSE_COUNTRY_ACTIVITY
 import com.matias.cogui.common.model.objects.Country
 import com.matias.cogui.common.mvp.BaseActivity
-import com.matias.cogui.common.utils.managers.DialogsManager
+import com.matias.cogui.common.utils.UiHelper
 import com.matias.cogui.common.utils.managers.PhoneManager
 import com.matias.cogui.common.views.ViewAgreement
 import com.matias.cogui.common.views.ViewCountryPhoneSelector
 import com.matias.cogui.screens.choosecountry.ChooseCountryActivity
 import com.matias.cogui.screens.registerphone.fragments.EnterPhoneFragment
+import com.matias.cogui.screens.registerphone.fragments.ValidatePhoneFragment
 import kotlinx.android.synthetic.main.activity_register_phone.*
 import javax.inject.Inject
 
 class RegisterPhoneActivity : BaseActivity(),
 	RegisterPhoneContract.View,
 	EnterPhoneFragment.Listener,
+	ValidatePhoneFragment.Listener,
 	ViewCountryPhoneSelector.Listener,
 	ViewAgreement.Listener {
 
@@ -32,10 +35,13 @@ class RegisterPhoneActivity : BaseActivity(),
 	@Inject
 	lateinit var phoneManager: PhoneManager
 	@Inject
-	lateinit var dialogsManager: DialogsManager
+	lateinit var fragmentManager: FragmentManager
+	@Inject
+	lateinit var uiHelper: UiHelper
 
 	private lateinit var selectedCountry: Country
 	private val enterPhoneFragment = EnterPhoneFragment.newInstance(null)
+	private val validatePhoneFragment = ValidatePhoneFragment.newInstance()
 
 	companion object {
 		// Class tag.
@@ -54,8 +60,11 @@ class RegisterPhoneActivity : BaseActivity(),
 	}
 
 	override fun onBackPressed() {
-		super.onBackPressed()
-		finish()
+		if (fragmentManager.backStackEntryCount > 1) {
+			fragmentManager.popBackStack()
+		} else {
+			finish()
+		}
 	}
 
 	override fun onResume() {
@@ -68,14 +77,23 @@ class RegisterPhoneActivity : BaseActivity(),
 	 */
 
 	override fun goToEnterPhoneScreen() {
-		supportFragmentManager
+		fragmentManager
 			.beginTransaction()
-			.add(fl_container.id, enterPhoneFragment, enterPhoneFragment.tag)
+			.add(fl_container.id, enterPhoneFragment)
+			.addToBackStack(null)
 			.commit()
 	}
 
 	override fun goToValidatePhoneScreen() {
-		Toast.makeText(this, "Go to Validate Phone Screen", Toast.LENGTH_SHORT).show()
+		fragmentManager
+			.beginTransaction()
+			.replace(fl_container.id, validatePhoneFragment)
+			.addToBackStack(null)
+			.commit()
+	}
+
+	override fun showLoadingDialog() {
+		TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
 	}
 
 	override fun setSelectedCountry(country: Country) {
@@ -110,7 +128,16 @@ class RegisterPhoneActivity : BaseActivity(),
 	}
 
 	override fun onGetStartedClick(phoneNumber: String) {
+		uiHelper.hideKeyboard()
 		presenter.validatePhoneNumber(selectedCountry.nameCode, phoneNumber)
+	}
+
+	/**
+	 * [ValidatePhoneFragment.Listener] interface implementation.
+	 */
+
+	override fun onFragmentInteraction() {
+		TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
 	}
 
 	/**

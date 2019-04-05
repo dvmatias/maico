@@ -3,6 +3,7 @@ package com.matias.cogui.common.mvp
 import android.os.Bundle
 import android.support.annotation.UiThread
 import android.support.v4.app.Fragment
+import android.support.v7.app.AppCompatActivity
 import com.matias.cogui.common.MyApplication
 import com.matias.cogui.common.dependencyinjection.application.ApplicationComponent
 import com.matias.cogui.common.dependencyinjection.presentation.PresentationComponent
@@ -23,7 +24,7 @@ open class BaseFragment : Fragment(), BaseView {
         }
         isInjectorUsed = true
         return getApplicationComponent().newPresentationComponent(
-            PresentationModule(this, activity!!)
+            PresentationModule(this, activity!! as AppCompatActivity)
         )
     }
 
