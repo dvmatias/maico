@@ -29,7 +29,7 @@
 
 		<!-- Validate Credentials Activity -->
 		<activity
-			android:name="com.matias.cogui.screens.registerphone.RegisterPhoneActivity"
+			android:name="com.matias.cogui.screens.validatecredentials.ValidateCredentialsActivity"
 			android:theme="@style/NoActionBar" />
 
 		<!-- Choose Country Activity -->
@@ -37,7 +37,7 @@
 			android:name="com.matias.cogui.screens.choosecountry.ChooseCountryActivity">
 			<meta-data
 				android:name="android.support.PARENT_ACTIVITY"
-				android:value="com.matias.cogui.screens.registerphone.RegisterPhoneActivity" />
+				android:value="com.matias.cogui.screens.validatecredentials.ValidateCredentialsActivity" />
 		</activity>
 	</application>
 
