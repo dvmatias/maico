@@ -2,6 +2,7 @@ package com.matias.cogui.common.dependencyinjection.presentation
 
 import android.app.Activity
 import android.content.Context
+import android.support.v4.app.FragmentActivity
 import android.support.v4.app.FragmentManager
 import com.google.gson.Gson
 import com.matias.cogui.common.utils.managers.SharedPreferencesManager
@@ -14,9 +15,12 @@ import dagger.Provides
 @Module
 class PresentationModule(
     private var view: BaseView,
-    private var fragmentManager: FragmentManager,
-    private var activity: Activity
+    private var activity: FragmentActivity
 ) {
+
+    @Provides
+    fun getFragmentManager(): FragmentManager = activity.supportFragmentManager
+
 
     @Provides
     fun getActivity(): Activity = activity
@@ -37,6 +41,6 @@ class PresentationModule(
     fun getGson(): Gson = Gson()
 
     @Provides
-    fun getDialogsManager(): DialogsManager = DialogsManager(fragmentManager)
+    fun getDialogsManager(fragmentManager: FragmentManager): DialogsManager = DialogsManager(fragmentManager)
 
 }

@@ -23,7 +23,7 @@ abstract class BaseActivity : AppCompatActivity(), BaseView {
         }
         isInjectorUsed = true
         return getApplicationComponent().newPresentationComponent(
-            PresentationModule(this, supportFragmentManager, this)
+            PresentationModule(this, this)
         )
     }
 
