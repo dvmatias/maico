@@ -9,23 +9,39 @@ import android.widget.LinearLayout
 import com.matias.cogui.R
 import com.matias.cogui.common.model.objects.Country
 import com.matias.cogui.common.utils.ImageLoader
-import javax.inject.Inject
+import com.matias.cogui.common.utils.managers.PhoneManager
 import kotlinx.android.synthetic.main.view_country_phone_selector.view.*
 
 class ViewCountryPhoneSelector(context: Context, attrs: AttributeSet) :
 		LinearLayout(context, attrs), View.OnClickListener, TextWatcher {
 
-	@Inject
-	lateinit var imageLoader: ImageLoader
-
     private lateinit var listener: Listener
+    var phoneNumber: String
+
+    init {
+        inflate(context, R.layout.view_country_phone_selector, this)
+
+        btn_country.setOnClickListener(this)
+        et_phone.addTextChangedListener(this)
+        hideError()
+
+        phoneNumber = ""
+
+        setClickListener()
+    }
 
     override fun afterTextChanged(s: Editable?) {}
 
     override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {}
 
     override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
-        if (!s.isNullOrBlank() && s.isNotEmpty()) listener.onPhoneNotEmpty() else listener.onPhoneEmpty()
+        phoneNumber = if (!s.isNullOrBlank() && s.isNotEmpty()) {
+            listener.onPhoneNotEmpty()
+            s.toString()
+        } else {
+            listener.onPhoneEmpty()
+            ""
+        }
     }
 
     override fun onClick(v: View?) {
@@ -40,16 +56,6 @@ class ViewCountryPhoneSelector(context: Context, attrs: AttributeSet) :
         fun onPhoneNotEmpty()
     }
 
-    init {
-        inflate(context, R.layout.view_country_phone_selector, this)
-
-        btn_country.setOnClickListener(this)
-        et_phone.addTextChangedListener(this)
-	    hideError()
-
-        setClickListener()
-    }
-
     private fun setClickListener() {
         if (context is Listener)
             this.listener = this.context as Listener
@@ -57,9 +63,9 @@ class ViewCountryPhoneSelector(context: Context, attrs: AttributeSet) :
             throw IllegalAccessException("Calling Activity must implement ViewCountryPhoneSelector.Listener interface.")
     }
 
-	fun setCountry(selectedCountry: Country, imageLoader: ImageLoader) {
+	fun showCountryInfo(selectedCountry: Country, imageLoader: ImageLoader, phoneManager: PhoneManager) {
 		imageLoader.loadImage(iv_flag, selectedCountry.url)
-		tv_code.text = selectedCountry.code
+		tv_code.text = phoneManager.getFormattedCountryCodeForRegion(selectedCountry.nameCode)
 	}
 
 	private fun showError(errorMessage: String) {
