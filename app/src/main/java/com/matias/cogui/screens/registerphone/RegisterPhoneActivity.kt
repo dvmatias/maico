@@ -3,37 +3,45 @@ package com.matias.cogui.screens.registerphone
 import android.app.Activity
 import android.content.Intent
 import android.os.Bundle
-import android.support.v4.app.DialogFragment
-import android.view.View
+import android.support.v4.app.FragmentManager
+import android.widget.Toast
 import com.google.gson.Gson
 import com.matias.cogui.R
 import com.matias.cogui.common.Constants.Companion.EXTRA_KEY_SELECTED_COUNTRY_COUNTRY_ACTIVITY
 import com.matias.cogui.common.Constants.Companion.REQUEST_CODE_CHOOSE_COUNTRY_ACTIVITY
 import com.matias.cogui.common.model.objects.Country
 import com.matias.cogui.common.mvp.BaseActivity
-import com.matias.cogui.common.utils.ImageLoader
-import com.matias.cogui.common.utils.managers.DialogsManager
+import com.matias.cogui.common.utils.UiHelper
 import com.matias.cogui.common.utils.managers.PhoneManager
 import com.matias.cogui.common.views.ViewAgreement
 import com.matias.cogui.common.views.ViewCountryPhoneSelector
 import com.matias.cogui.screens.choosecountry.ChooseCountryActivity
-import kotlinx.android.synthetic.main.activity_validate_credentials.*
+import com.matias.cogui.screens.registerphone.fragments.EnterPhoneFragment
+import com.matias.cogui.screens.registerphone.fragments.ValidatePhoneFragment
+import kotlinx.android.synthetic.main.activity_register_phone.*
 import javax.inject.Inject
 
 class RegisterPhoneActivity : BaseActivity(),
 	RegisterPhoneContract.View,
+	EnterPhoneFragment.Listener,
+	ValidatePhoneFragment.Listener,
 	ViewCountryPhoneSelector.Listener,
-	ViewAgreement.Listener,
-	View.OnClickListener{
+	ViewAgreement.Listener {
 
-	@Inject lateinit var presenter: RegisterPhonePresenter
-	@Inject lateinit var gson: Gson
-	@Inject lateinit var imageLoader: ImageLoader
-	@Inject lateinit var phoneManager: PhoneManager
-	@Inject lateinit var dialogsManager: DialogsManager
+	@Inject
+	lateinit var presenter: RegisterPhonePresenter
+	@Inject
+	lateinit var gson: Gson
+	@Inject
+	lateinit var phoneManager: PhoneManager
+	@Inject
+	lateinit var fragmentManager: FragmentManager
+	@Inject
+	lateinit var uiHelper: UiHelper
 
-	private var isAgreementViewVisible: Boolean = false
 	private lateinit var selectedCountry: Country
+	private val enterPhoneFragment = EnterPhoneFragment.newInstance(null)
+	private val validatePhoneFragment = ValidatePhoneFragment.newInstance()
 
 	companion object {
 		// Class tag.
@@ -43,17 +51,20 @@ class RegisterPhoneActivity : BaseActivity(),
 
 	override fun onCreate(savedInstanceState: Bundle?) {
 		super.onCreate(savedInstanceState)
-		setContentView(R.layout.activity_validate_credentials)
+		setContentView(R.layout.activity_register_phone)
 		getPresentationComponent().inject(this)
+
 		// Construct a default country object.
 		setSelectedCountry(Country())
-
-		btn_get_started.setOnClickListener(this)
+		goToEnterPhoneScreen()
 	}
 
 	override fun onBackPressed() {
-		super.onBackPressed()
-		finish()
+		if (fragmentManager.backStackEntryCount > 1) {
+			fragmentManager.popBackStack()
+		} else {
+			finish()
+		}
 	}
 
 	override fun onResume() {
@@ -61,9 +72,54 @@ class RegisterPhoneActivity : BaseActivity(),
 		showSelectedCountry()
 	}
 
-	/*
-     * MVP - [RegisterPhoneContract.View] interface implementation.
-     */
+	/**
+	 * MVP - [RegisterPhoneContract.View] interface implementation.
+	 */
+
+	override fun goToEnterPhoneScreen() {
+		fragmentManager
+			.beginTransaction()
+			.add(fl_container.id, enterPhoneFragment)
+			.addToBackStack(null)
+			.commit()
+	}
+
+	override fun goToValidatePhoneScreen() {
+		fragmentManager
+			.beginTransaction()
+			.replace(fl_container.id, validatePhoneFragment)
+			.addToBackStack(null)
+			.commit()
+	}
+
+	override fun showLoadingDialog() {
+		TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+	}
+
+	override fun setSelectedCountry(country: Country) {
+		this.selectedCountry = country
+	}
+
+	override fun showNoConnectionErrorDialog() {
+		Toast.makeText(this, "No Internet Connection", Toast.LENGTH_SHORT).show()
+	}
+
+	override fun showSelectedCountry() {
+		enterPhoneFragment.showSelectedCountry(this.selectedCountry)
+	}
+
+	override fun showWrongCountryDialog() {
+//		dialogsManager.showRetainedDialogWithId(DialogFragment()) TODO
+		Toast.makeText(this, "Wrong Country", Toast.LENGTH_SHORT).show()
+	}
+
+	override fun showWrongNumberDialog() {
+		Toast.makeText(this, "Wrong Number", Toast.LENGTH_SHORT).show()
+	}
+
+	/**
+	 * [EnterPhoneFragment.Listener] interface implementation.
+	 */
 
 	override fun goToChooseCountryScreen() {
 		val intent = Intent(this, ChooseCountryActivity::class.java)
@@ -71,46 +127,20 @@ class RegisterPhoneActivity : BaseActivity(),
 		startActivityForResult(intent, REQUEST_CODE_CHOOSE_COUNTRY_ACTIVITY)
 	}
 
-	override fun goToValidatePhoneScreen() {
+	override fun onGetStartedClick(phoneNumber: String) {
+		uiHelper.hideKeyboard()
+		presenter.validatePhoneNumber(selectedCountry.nameCode, phoneNumber)
+	}
+
+	/**
+	 * [ValidatePhoneFragment.Listener] interface implementation.
+	 */
+
+	override fun onFragmentInteraction() {
 		TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
 	}
 
-	override fun onGetStartedClick() {
-		presenter.validatePhoneNumber(selectedCountry.nameCode, v_country_phone_selector.phoneNumber)
-	}
-
-	override fun setSelectedCountry(country: Country) {
-		selectedCountry = country
-	}
-
-	override fun showNoConnectionErrorDialog() {
-		TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
-	}
-
-	override fun showGetStartButton(show: Boolean) {
-		btn_get_started.visibility = if (show) View.VISIBLE else View.GONE
-	}
-
-	override fun showSelectedCountry() {
-		v_country_phone_selector.showCountryInfo(this.selectedCountry, imageLoader, phoneManager)
-	}
-
-	override fun showTermsAndConditions(show: Boolean) {
-		if (isAgreementViewVisible == show) return
-		isAgreementViewVisible = show
-		if (show) agreement_view.setChecked(!show)
-		agreement_view.visibility = if (show) View.VISIBLE else View.GONE
-	}
-
-	override fun showWrongCountryDialog() {
-//		dialogsManager.showRetainedDialogWithId(DialogFragment()) TODO
-	}
-
-	override fun showWrongNumberDialog() {
-		TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
-	}
-
-	/*
+	/**
 	 * [ViewCountryPhoneSelector.Listener] interface implementation.
 	 */
 
@@ -119,44 +149,34 @@ class RegisterPhoneActivity : BaseActivity(),
 	}
 
 	override fun onPhoneEmpty() {
-		showTermsAndConditions(false)
-		showGetStartButton(false)
+		enterPhoneFragment.showTermsAndConditions(false)
+		enterPhoneFragment.showGetStartButton(false)
 	}
 
 	override fun onPhoneNotEmpty() {
-		showTermsAndConditions(true)
+		enterPhoneFragment.showTermsAndConditions(true)
 	}
 
-	/*
+	/**
 	 * [ViewAgreement.Listener] interface implementation.
 	 */
 
 	override fun onAgreementAccepted() {
-		showGetStartButton(true)
+		enterPhoneFragment.showGetStartButton(true)
 	}
 
 	override fun onAgreementRejected() {
-		showGetStartButton(false)
+		enterPhoneFragment.showGetStartButton(false)
 	}
 
-	/*
-	 * [View.OnClickListener] interface implementation.
-	 */
-
-	override fun onClick(v: View?) {
-		when(v?.id) {
-			btn_get_started.id -> onGetStartedClick()
-		}
-	}
-
-	/*
-	 * On Activity Result-
+	/**
+	 * On Activity Result.
 	 */
 
 	override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
 		super.onActivityResult(requestCode, resultCode, data)
 		if (requestCode == REQUEST_CODE_CHOOSE_COUNTRY_ACTIVITY) {
-			selectedCountry = when(resultCode) {
+			selectedCountry = when (resultCode) {
 				Activity.RESULT_OK -> {
 					gson.fromJson(
 						data?.getStringExtra(EXTRA_KEY_SELECTED_COUNTRY_COUNTRY_ACTIVITY),
@@ -170,4 +190,5 @@ class RegisterPhoneActivity : BaseActivity(),
 			showSelectedCountry()
 		}
 	}
+
 }

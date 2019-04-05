@@ -5,4 +5,7 @@
 
 	<string name="hint_view_country_phone_selector">Enter you number</string>
 
+	<!-- TODO: Remove or change this placeholder text -->
+	<string name="hello_blank_fragment">Hello blank fragment</string>
+
 </resources>
