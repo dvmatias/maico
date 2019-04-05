@@ -8,14 +8,10 @@ interface RegisterPhoneContract {
 
     interface View : BaseView {
 
-        fun goToChooseCountryScreen() // Launch ChooseCountryActivity.
         fun goToValidatePhoneScreen() // TODO
-        fun onGetStartedClick()
         fun setSelectedCountry(country: Country) // set selected (or default) country.
         fun showNoConnectionErrorDialog() // Show error for no Internet connection status.
-        fun showGetStartButton(show: Boolean) // Show/Hide "Get Started" button.
         fun showSelectedCountry()
-        fun showTermsAndConditions(show: Boolean) // Show the view for terms and conditions.
         fun showWrongCountryDialog() // Display error for entered country.
         fun showWrongNumberDialog() // Display error for entered number.
 
