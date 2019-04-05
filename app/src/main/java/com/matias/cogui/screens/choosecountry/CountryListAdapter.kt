@@ -9,10 +9,11 @@ import android.widget.TextView
 import com.matias.cogui.R
 import com.matias.cogui.common.model.objects.Country
 import com.matias.cogui.common.utils.ImageLoader
+import com.matias.cogui.common.utils.managers.PhoneManager
 import com.matias.cogui.screens.choosecountry.CountryListAdapter.CountryViewHolder
 import kotlinx.android.synthetic.main.item_country.view.*
 
-class CountryListAdapter(listener: ClickListener, var imageLoader: ImageLoader) :
+class CountryListAdapter(listener: ClickListener, private val imageLoader: ImageLoader, private val phoneManager: PhoneManager) :
 	RecyclerView.Adapter<CountryViewHolder>() {
 
 	private lateinit var countryList: List<Country>
@@ -47,7 +48,7 @@ class CountryListAdapter(listener: ClickListener, var imageLoader: ImageLoader) 
 		val itemCountry = countryList[position]
 		imageLoader.loadImage(holder.ivFlag, itemCountry.url)
 		holder.tvName.tv_name.text = itemCountry.name
-		holder.tvCode.tv_code.text = itemCountry.code
+		holder.tvCode.tv_code.text = phoneManager.getFormattedCountryCodeForRegion(itemCountry.nameCode)
 		holder.itemView.setOnClickListener {
 			clickListener.onItemClick(itemCountry)
 		}
