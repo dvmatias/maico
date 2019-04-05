@@ -60,7 +60,7 @@ class EnterPhoneFragment : BaseFragment(), View.OnClickListener {
 		if (context is Listener) {
 			listener = context
 		} else {
-			throw RuntimeException("Calling Activity must implement EnterPhoneFragment.Listener interface.")
+			throw RuntimeException("$context must implement ValidatePhoneFragment.Listener interface.")
 		}
 	}
 
