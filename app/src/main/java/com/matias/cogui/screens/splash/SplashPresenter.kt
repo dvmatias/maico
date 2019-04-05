@@ -30,7 +30,7 @@ class SplashPresenter(
     }
 
     override fun credentialsInvalid() {
-        this.view?.goToRegisterPhoneScreen()
+        this.view?.goToValidateCredentialsScreen()
     }
 
     /*

@@ -5,7 +5,8 @@ class CountrySchema(
 ) {
 	data class Country(
 		var name: String,
-		var code: String,
-		var url: String
+		var initials: String,
+		var url: String,
+		var code: Int
 	)
 }
