@@ -27,7 +27,7 @@ class EnterPhoneFragment : BaseFragment(), View.OnClickListener {
 
 	private var param1: String? = null
 	private var param2: String? = null
-	private var listener: OnFragmentInteractionListener? = null
+	private var listener: Listener? = null
 	private var isAgreementViewVisible: Boolean = false
 
 	override fun onClick(v: View?) {
@@ -71,10 +71,10 @@ class EnterPhoneFragment : BaseFragment(), View.OnClickListener {
 
 	override fun onAttach(context: Context) {
 		super.onAttach(context)
-		if (context is OnFragmentInteractionListener) {
+		if (context is Listener) {
 			listener = context
 		} else {
-			throw RuntimeException(context.toString() + " must implement OnFragmentInteractionListener")
+			throw RuntimeException("Calling Activity must implement EnterPhoneFragment.Listener interface.")
 		}
 	}
 
@@ -83,7 +83,11 @@ class EnterPhoneFragment : BaseFragment(), View.OnClickListener {
 		listener = null
 	}
 
-	interface OnFragmentInteractionListener {
+	/**
+	 * Interface to be implemented by calling Activity.
+	 */
+
+	interface Listener {
 		fun onGetStartedClick(phoneNumber: String)
 		fun goToChooseCountryScreen()
 	}
