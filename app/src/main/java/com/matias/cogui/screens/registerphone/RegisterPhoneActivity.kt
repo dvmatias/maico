@@ -12,10 +12,13 @@ import com.matias.cogui.common.Constants.Companion.REQUEST_CODE_CHOOSE_COUNTRY_A
 import com.matias.cogui.common.model.objects.Country
 import com.matias.cogui.common.mvp.BaseActivity
 import com.matias.cogui.common.utils.UiHelper
+import com.matias.cogui.common.utils.managers.DialogsManager
 import com.matias.cogui.common.utils.managers.PhoneManager
+import com.matias.cogui.common.views.LoadingDialogFragment
 import com.matias.cogui.common.views.ViewAgreement
 import com.matias.cogui.common.views.ViewCountryPhoneSelector
 import com.matias.cogui.screens.choosecountry.ChooseCountryActivity
+import com.matias.cogui.screens.registerphone.RegisterPhoneActivity.Companion.TAG
 import com.matias.cogui.screens.registerphone.fragments.EnterPhoneFragment
 import com.matias.cogui.screens.registerphone.fragments.ValidatePhoneFragment
 import kotlinx.android.synthetic.main.activity_register_phone.*
@@ -38,6 +41,10 @@ class RegisterPhoneActivity : BaseActivity(),
 	lateinit var fragmentManager: FragmentManager
 	@Inject
 	lateinit var uiHelper: UiHelper
+	@Inject
+	lateinit var loadingDialogFragment: LoadingDialogFragment
+	@Inject
+	lateinit var dialogsManager: DialogsManager
 
 	private lateinit var selectedCountry: Country
 	private val enterPhoneFragment = EnterPhoneFragment.newInstance(null)
@@ -92,8 +99,15 @@ class RegisterPhoneActivity : BaseActivity(),
 			.commit()
 	}
 
-	override fun showLoadingDialog() {
-		TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+	override fun showLoadingDialog(show: Boolean) {
+		if (show) {
+			dialogsManager.showRetainedDialogWithId(
+				loadingDialogFragment,
+				LoadingDialogFragment.TAG
+			)
+		} else {
+			dialogsManager.dismissCurrentlyShownDialog()
+		}
 	}
 
 	override fun setSelectedCountry(country: Country) {
