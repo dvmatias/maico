@@ -19,6 +19,11 @@ class LoadingDialogFragment : DialogFragment() {
 		@JvmStatic
 		fun newInstance() = LoadingDialogFragment()
 
+		val TAG: String
+			get() {
+				val tag = LoadingDialogFragment::class.java.simpleName
+				return if (tag.length <= 23) tag else tag.substring(0, 23)
+			}
 	}
 
 	override fun onCreate(savedInstanceState: Bundle?) {

@@ -6,7 +6,8 @@ import dagger.Provides
 
 @Module
 class DialogModule {
+
 	@Provides
-	fun getLoadingDialogFragment(): LoadingDialogFragment = LoadingDialogFragment()
+	fun getLoadingDialogFragment(): LoadingDialogFragment = LoadingDialogFragment.newInstance()
 
 }
