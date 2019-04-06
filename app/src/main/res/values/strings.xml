@@ -13,4 +13,6 @@
 
 	<string name="title_fragment_validate_phone">Validate Phone</string>
 
+	<string name="title_pin_validator_view">Enter your PIN code</string>
+
 </resources>

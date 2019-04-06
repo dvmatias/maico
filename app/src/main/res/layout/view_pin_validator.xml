@@ -1,0 +1,22 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+	android:layout_width="match_parent"
+	android:layout_height="match_parent"
+	android:layout_margin="@dimen/dimen_8dp"
+	android:orientation="vertical">
+
+	<!-- Title -->
+	<TextView
+		android:id="@+id/tv_title"
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content"
+		android:ellipsize="end"
+		android:maxLines="@integer/one"
+		android:text="@string/title_pin_validator_view" />
+
+	<android.support.v7.widget.RecyclerView
+		android:id="@+id/rv_pin_digit"
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content"
+		android:background="#f4f4f4" />
+
+</LinearLayout>
