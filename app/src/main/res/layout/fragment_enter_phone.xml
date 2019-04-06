@@ -19,7 +19,7 @@
 		android:src="@drawable/img_validate_credentials_app_name" />
 
 	<!-- Country Selector and Phone Number Edit Box. -->
-	<com.matias.cogui.common.views.ViewCountryPhoneSelector
+	<com.matias.cogui.common.views.CountryPhoneSelectorView
 		android:id="@+id/v_country_phone_selector"
 		android:layout_width="match_parent"
 		android:layout_height="wrap_content"
@@ -28,7 +28,7 @@
 		android:layout_marginEnd="@dimen/dimen_16dp" />
 
 	<!-- Agreement. -->
-	<com.matias.cogui.common.views.ViewAgreement
+	<com.matias.cogui.common.views.AgreementView
 		android:id="@+id/agreement_view"
 		android:layout_width="match_parent"
 		android:layout_height="wrap_content"

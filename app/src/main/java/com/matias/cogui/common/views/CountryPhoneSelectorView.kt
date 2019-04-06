@@ -12,7 +12,7 @@ import com.matias.cogui.common.utils.ImageLoader
 import com.matias.cogui.common.utils.managers.PhoneManager
 import kotlinx.android.synthetic.main.view_country_phone_selector.view.*
 
-class ViewCountryPhoneSelector(context: Context, attrs: AttributeSet) :
+class CountryPhoneSelectorView(context: Context, attrs: AttributeSet) :
 		LinearLayout(context, attrs), View.OnClickListener, TextWatcher {
 
     private lateinit var listener: Listener
@@ -60,7 +60,7 @@ class ViewCountryPhoneSelector(context: Context, attrs: AttributeSet) :
         if (context is Listener)
             this.listener = this.context as Listener
         else
-            throw IllegalAccessException("Calling Activity must implement ViewCountryPhoneSelector.Listener interface.")
+            throw IllegalAccessException("Calling Activity must implement CountryPhoneSelectorView.Listener interface.")
     }
 
 	fun showCountryInfo(selectedCountry: Country, imageLoader: ImageLoader, phoneManager: PhoneManager) {

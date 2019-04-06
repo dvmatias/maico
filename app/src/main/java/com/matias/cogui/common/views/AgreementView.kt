@@ -7,7 +7,7 @@ import android.widget.LinearLayout
 import com.matias.cogui.R
 import kotlinx.android.synthetic.main.view_agreements.view.*
 
-class ViewAgreement(context: Context, attrs: AttributeSet) : LinearLayout(context, attrs), View.OnClickListener {
+class AgreementView(context: Context, attrs: AttributeSet) : LinearLayout(context, attrs), View.OnClickListener {
 
     private lateinit var listener: Listener
 
@@ -34,7 +34,7 @@ class ViewAgreement(context: Context, attrs: AttributeSet) : LinearLayout(contex
         if (context is Listener)
             this.listener = this.context as Listener
         else
-            throw IllegalAccessException("Calling Activity must implement ViewAgreement.Listener interface.")
+            throw IllegalAccessException("Calling Activity must implement AgreementView.Listener interface.")
     }
 
     private fun setCheckStatus(isChecked: Boolean) {

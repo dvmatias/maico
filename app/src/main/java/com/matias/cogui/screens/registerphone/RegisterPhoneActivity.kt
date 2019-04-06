@@ -15,8 +15,8 @@ import com.matias.cogui.common.utils.UiHelper
 import com.matias.cogui.common.utils.managers.DialogsManager
 import com.matias.cogui.common.utils.managers.PhoneManager
 import com.matias.cogui.common.views.LoadingDialogFragment
-import com.matias.cogui.common.views.ViewAgreement
-import com.matias.cogui.common.views.ViewCountryPhoneSelector
+import com.matias.cogui.common.views.AgreementView
+import com.matias.cogui.common.views.CountryPhoneSelectorView
 import com.matias.cogui.screens.choosecountry.ChooseCountryActivity
 import com.matias.cogui.screens.registerphone.fragments.EnterPhoneFragment
 import com.matias.cogui.screens.registerphone.fragments.ValidatePhoneFragment
@@ -27,8 +27,8 @@ class RegisterPhoneActivity : BaseActivity(),
 	RegisterPhoneContract.View,
 	EnterPhoneFragment.Listener,
 	ValidatePhoneFragment.Listener,
-	ViewCountryPhoneSelector.Listener,
-	ViewAgreement.Listener {
+	CountryPhoneSelectorView.Listener,
+	AgreementView.Listener {
 
 	@Inject
 	lateinit var presenter: RegisterPhonePresenter
@@ -154,7 +154,7 @@ class RegisterPhoneActivity : BaseActivity(),
 	}
 
 	/**
-	 * [ViewCountryPhoneSelector.Listener] interface implementation.
+	 * [CountryPhoneSelectorView.Listener] interface implementation.
 	 */
 
 	override fun onCountryClick() {
@@ -171,7 +171,7 @@ class RegisterPhoneActivity : BaseActivity(),
 	}
 
 	/**
-	 * [ViewAgreement.Listener] interface implementation.
+	 * [AgreementView.Listener] interface implementation.
 	 */
 
 	override fun onAgreementAccepted() {
