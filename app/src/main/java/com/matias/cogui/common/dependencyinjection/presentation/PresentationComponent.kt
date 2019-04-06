@@ -11,7 +11,8 @@ import dagger.Subcomponent
 		PresentationModule::class,
 		PresenterModule::class,
 		InteractorModule::class,
-		AdapterModule::class
+		AdapterModule::class,
+		DialogModule::class
 	]
 )
 interface PresentationComponent {

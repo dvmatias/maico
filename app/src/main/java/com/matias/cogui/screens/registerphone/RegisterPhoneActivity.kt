@@ -13,7 +13,7 @@ import com.matias.cogui.common.model.objects.Country
 import com.matias.cogui.common.mvp.BaseActivity
 import com.matias.cogui.common.utils.UiHelper
 import com.matias.cogui.common.utils.managers.PhoneManager
-import com.matias.cogui.common.views.LoadingFragment
+import com.matias.cogui.common.views.LoadingDialogFragment
 import com.matias.cogui.common.views.ViewAgreement
 import com.matias.cogui.common.views.ViewCountryPhoneSelector
 import com.matias.cogui.screens.choosecountry.ChooseCountryActivity
@@ -39,11 +39,12 @@ class RegisterPhoneActivity : BaseActivity(),
 	lateinit var fragmentManager: FragmentManager
 	@Inject
 	lateinit var uiHelper: UiHelper
+	@Inject
+	lateinit var loadingDialogFragment: LoadingDialogFragment
 
 	private lateinit var selectedCountry: Country
 	private val enterPhoneFragment = EnterPhoneFragment.newInstance(null)
 	private val validatePhoneFragment = ValidatePhoneFragment.newInstance()
-	private val loadingFragment = LoadingFragment.newInstance()
 
 	companion object {
 		// Class tag.
@@ -59,9 +60,6 @@ class RegisterPhoneActivity : BaseActivity(),
 		// Construct a default country object.
 		setSelectedCountry(Country())
 		goToEnterPhoneScreen()
-
-		//TODO DELETE!!!
-		showLoadingDialog(true)
 	}
 
 	override fun onBackPressed() {
@@ -99,9 +97,9 @@ class RegisterPhoneActivity : BaseActivity(),
 
 	override fun showLoadingDialog(show: Boolean) {
 		if (show) {
-			loadingFragment.show(fragmentManager, "")
+			loadingDialogFragment.show(fragmentManager, "")
 		} else {
-			loadingFragment.dismiss()
+			loadingDialogFragment.dismiss()
 		}
 	}
 

@@ -20,7 +20,7 @@ class RegisterPhonePresenter(v: RegisterPhoneContract.View, private val phoneMan
 	    Handler().postDelayed({
 		    view?.showLoadingDialog(false)
 		    view?.goToValidatePhoneScreen()
-	    }, 10000)
+	    }, 3000)
     }
 
     override fun validatePhoneNumber(nameCode: String, number: String) {

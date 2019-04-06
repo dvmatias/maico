@@ -9,18 +9,15 @@ import android.view.ViewGroup
 import android.widget.LinearLayout
 import com.matias.cogui.R
 import android.util.DisplayMetrics
-import android.view.Display
-import android.content.Context.WINDOW_SERVICE
-import android.support.v4.content.ContextCompat.getSystemService
 import android.view.WindowManager
 
 
 
-class LoadingFragment : DialogFragment() {
+class LoadingDialogFragment : DialogFragment() {
 
 	companion object {
 		@JvmStatic
-		fun newInstance() = LoadingFragment()
+		fun newInstance() = LoadingDialogFragment()
 
 	}
 
@@ -43,7 +40,6 @@ class LoadingFragment : DialogFragment() {
 		val metrics = DisplayMetrics()
 		display.getMetrics(metrics)
 		val widthDisplay = metrics.widthPixels
-		val heightB = metrics.heightPixels
 
 		val width = widthDisplay * 0.8
 		val height = LinearLayout.LayoutParams.WRAP_CONTENT
