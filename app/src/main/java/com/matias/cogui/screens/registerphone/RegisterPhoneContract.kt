@@ -6,25 +6,27 @@ import com.matias.cogui.common.mvp.BaseView
 
 interface RegisterPhoneContract {
 
-    interface View : BaseView {
+	interface View : BaseView {
 
-        fun goToEnterPhoneScreen() // TODO
-        fun goToValidatePhoneScreen() // TODO
-        fun setSelectedCountry(country: Country) // set selected (or default) country.
-	    fun showLoadingDialog(show: Boolean)
-        fun showNoConnectionErrorDialog() // Show error for no Internet connection status.
-        fun showSelectedCountry()
-        fun showWrongCountryDialog() // Display error for entered country.
-        fun showWrongNumberDialog() // Display error for entered number.
+		fun goToEnterPhoneScreen()
+		fun goToValidatePhoneScreen()
+		fun setSelectedCountry(country: Country)
+		fun showLoadingDialog(show: Boolean)
+		fun showNoConnectionErrorDialog()
+		fun showSelectedCountry()
+		fun showWrongCountryDialog()
+		fun showWrongNumberDialog()
 
-    }
+	}
 
-    interface Presenter : BasePresenter<View> {
+	interface Presenter : BasePresenter<View> {
 
-        fun checkInternetConnectionStatus() // Verify Internet connection status.
-        fun validateCountry() // Verify if the selected country number is correct.
-        fun validatePhoneNumber(nameCode: String, number: String) // Verify if the phone number is correct.
+		fun checkInternetConnectionStatus()
+		fun validatePhoneNumber(countryNameCode: String, phoneNumber: String)
+		fun isValidPhoneNumber(): Boolean
+		fun isValidCountry(): Boolean
+		fun registerPhoneNumber()
 
-    }
+	}
 
 }

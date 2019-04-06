@@ -18,7 +18,6 @@ import com.matias.cogui.common.views.LoadingDialogFragment
 import com.matias.cogui.common.views.ViewAgreement
 import com.matias.cogui.common.views.ViewCountryPhoneSelector
 import com.matias.cogui.screens.choosecountry.ChooseCountryActivity
-import com.matias.cogui.screens.registerphone.RegisterPhoneActivity.Companion.TAG
 import com.matias.cogui.screens.registerphone.fragments.EnterPhoneFragment
 import com.matias.cogui.screens.registerphone.fragments.ValidatePhoneFragment
 import kotlinx.android.synthetic.main.activity_register_phone.*
