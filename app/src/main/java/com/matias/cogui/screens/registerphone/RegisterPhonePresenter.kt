@@ -16,10 +16,11 @@ class RegisterPhonePresenter(v: RegisterPhoneContract.View, private val phoneMan
     }
 
     override fun validateCountry() {
-        view?.showLoadingDialog()
+        view?.showLoadingDialog(true)
 	    Handler().postDelayed({
+		    view?.showLoadingDialog(false)
 		    view?.goToValidatePhoneScreen()
-	    }, 2000)
+	    }, 10000)
     }
 
     override fun validatePhoneNumber(nameCode: String, number: String) {

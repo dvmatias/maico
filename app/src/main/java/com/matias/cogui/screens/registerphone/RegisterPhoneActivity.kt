@@ -13,6 +13,7 @@ import com.matias.cogui.common.model.objects.Country
 import com.matias.cogui.common.mvp.BaseActivity
 import com.matias.cogui.common.utils.UiHelper
 import com.matias.cogui.common.utils.managers.PhoneManager
+import com.matias.cogui.common.views.LoadingFragment
 import com.matias.cogui.common.views.ViewAgreement
 import com.matias.cogui.common.views.ViewCountryPhoneSelector
 import com.matias.cogui.screens.choosecountry.ChooseCountryActivity
@@ -42,6 +43,7 @@ class RegisterPhoneActivity : BaseActivity(),
 	private lateinit var selectedCountry: Country
 	private val enterPhoneFragment = EnterPhoneFragment.newInstance(null)
 	private val validatePhoneFragment = ValidatePhoneFragment.newInstance()
+	private val loadingFragment = LoadingFragment.newInstance()
 
 	companion object {
 		// Class tag.
@@ -57,6 +59,9 @@ class RegisterPhoneActivity : BaseActivity(),
 		// Construct a default country object.
 		setSelectedCountry(Country())
 		goToEnterPhoneScreen()
+
+		//TODO DELETE!!!
+		showLoadingDialog(true)
 	}
 
 	override fun onBackPressed() {
@@ -92,8 +97,12 @@ class RegisterPhoneActivity : BaseActivity(),
 			.commit()
 	}
 
-	override fun showLoadingDialog() {
-		TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+	override fun showLoadingDialog(show: Boolean) {
+		if (show) {
+			loadingFragment.show(fragmentManager, "")
+		} else {
+			loadingFragment.dismiss()
+		}
 	}
 
 	override fun setSelectedCountry(country: Country) {

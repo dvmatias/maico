@@ -11,7 +11,7 @@ interface RegisterPhoneContract {
         fun goToEnterPhoneScreen() // TODO
         fun goToValidatePhoneScreen() // TODO
         fun setSelectedCountry(country: Country) // set selected (or default) country.
-	    fun showLoadingDialog()
+	    fun showLoadingDialog(show: Boolean)
         fun showNoConnectionErrorDialog() // Show error for no Internet connection status.
         fun showSelectedCountry()
         fun showWrongCountryDialog() // Display error for entered country.
