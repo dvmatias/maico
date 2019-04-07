@@ -7,6 +7,5 @@
 		android:layout_width="@dimen/dimen_38dp"
 		android:layout_height="@dimen/dimen_38dp"
 		android:layout_gravity="center_horizontal"
-		android:layout_margin="@dimen/dimen_2dp"
 		android:background="@drawable/shape_view_country_phone_selector_bg" />
 </FrameLayout>

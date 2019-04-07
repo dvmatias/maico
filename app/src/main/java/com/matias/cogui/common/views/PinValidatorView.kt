@@ -9,6 +9,7 @@ import android.util.AttributeSet
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.ViewTreeObserver
 import android.widget.LinearLayout
 import com.matias.cogui.R
 import kotlinx.android.synthetic.main.view_pin_validator.view.*
@@ -69,22 +70,50 @@ class PinValidatorView : LinearLayout {
 	}
 
 	private fun setupRecyclerView() {
-		val adapter = PinDigitAdapter(numberOfDigits)
-		val layoutManager =
-			NonScrolleableLinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
 
-		rv_pin_digit.addItemDecoration(EqualSpaceItemDecoration(50))
-		rv_pin_digit.layoutManager = layoutManager
-		layoutManager.setScrollEnabled(false)
-		rv_pin_digit.adapter = adapter
-		adapter.notifyDataSetChanged()
+		setRecyclerViewWidth()
+
 	}
+
+	private fun setRecyclerViewWidth() {
+		rv_pin_digit?.viewTreeObserver?.addOnGlobalLayoutListener(
+			object : ViewTreeObserver.OnGlobalLayoutListener {
+				override fun onGlobalLayout() {
+					rv_pin_digit?.viewTreeObserver?.removeOnGlobalLayoutListener(this)
+					val rvWidth = rv_pin_digit?.measuredWidth
+
+					if (rvWidth != 0) {
+						val adapter = PinDigitAdapter(numberOfDigits)
+						val layoutManager =
+							NonScrollableLinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
+
+						rv_pin_digit.addItemDecoration(EqualSpaceItemDecoration((rvWidth!! - numberOfDigits*context.resources.getDimensionPixelSize(R.dimen.dimen_38dp)) / (numberOfDigits-1)))
+
+						rv_pin_digit.layoutManager = layoutManager
+						layoutManager.setScrollEnabled(false)
+						rv_pin_digit.adapter = adapter
+						adapter.notifyDataSetChanged()
+
+					}
+				}
+			})
+	}
+
 
 	/**
 	 * TODO doc.
 	 */
 	class PinDigitAdapter(var digitsCount: Int) :
 		RecyclerView.Adapter<PinDigitAdapter.PinDigitHolder>() {
+
+		private var recyclerView: RecyclerView? = null
+		private var recyclerViewWidth: Int? = 0
+
+		override fun onAttachedToRecyclerView(recyclerView: RecyclerView) {
+			super.onAttachedToRecyclerView(recyclerView)
+
+			this.recyclerView = recyclerView
+		}
 
 		override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): PinDigitHolder {
 			val itemView = LayoutInflater.from(parent.context)
@@ -97,34 +126,36 @@ class PinValidatorView : LinearLayout {
 		}
 
 		override fun onBindViewHolder(holder: PinDigitHolder, position: Int) {
-
+			// Set a tag to keep track of item inside [EqualSpaceItemDecoration] decorator.
+			holder.itemView.tag = "$position"
 		}
 
 		class PinDigitHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
 
 		}
+
 	}
 
 	/**
 	 * TODO
 	 */
-	internal inner class EqualSpaceItemDecoration(private val mSpaceHeight: Int) :
+	open class EqualSpaceItemDecoration(private val mSpaceHeight: Int) :
 		RecyclerView.ItemDecoration() {
 
 		override fun getItemOffsets(
 			outRect: Rect, view: View, parent: RecyclerView,
 			state: RecyclerView.State
 		) {
-			view.setBackgroundColor(Color.CYAN)
-			outRect.left = mSpaceHeight
-			outRect.right = mSpaceHeight
+			if (view.tag.toString() != "0") {
+				outRect.left = mSpaceHeight
+			}
 		}
 	}
 
 	/**
 	 * TODO
 	 */
-	inner class NonScrolleableLinearLayoutManager(context: Context, a: Int, b: Boolean) :
+	inner class NonScrollableLinearLayoutManager(context: Context, a: Int, b: Boolean) :
 		LinearLayoutManager(context, a, b) {
 		private var isScrollEnabled = true
 
@@ -140,5 +171,9 @@ class PinValidatorView : LinearLayout {
 			return isScrollEnabled && super.canScrollHorizontally()
 		}
 	}
+
+}
+
+private fun PinValidatorView.EqualSpaceItemDecoration.caca(i: Int) {
 
 }
