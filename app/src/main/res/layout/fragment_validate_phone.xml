@@ -26,15 +26,17 @@
 		android:id="@+id/tv_title"
 		android:layout_width="wrap_content"
 		android:layout_height="wrap_content"
-		android:layout_marginStart="@dimen/dimen_16dp"
-		android:layout_marginTop="@dimen/dimen_8dp"
-		android:textSize="@dimen/text_20sp"
-		android:text="@string/title_fragment_validate_phone"/>
+		android:layout_marginStart="@dimen/dimen_30dp"
+		android:layout_marginTop="@dimen/dimen_20dp"
+		android:text="@string/title_fragment_validate_phone"
+		android:textSize="@dimen/text_20sp" />
 
 	<com.matias.cogui.common.views.PinValidatorView
 		android:layout_width="match_parent"
 		android:layout_height="wrap_content"
-		android:layout_marginStart="@dimen/dimen_16dp"
-		android:layout_marginEnd="@dimen/dimen_16dp"
-		pinValidatorView:numberOfDigits="5"/>
+		android:layout_marginStart="@dimen/dimen_22dp"
+		android:layout_marginEnd="@dimen/dimen_22dp"
+		android:layout_marginTop="@dimen/dimen_12dp"
+		android:baselineAligned="false"
+		pinValidatorView:numberOfDigits="6" />
 </LinearLayout>
