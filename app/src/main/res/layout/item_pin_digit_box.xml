@@ -4,8 +4,8 @@
 	android:layout_height="wrap_content">
 
 	<EditText
-		android:layout_width="@dimen/dimen_38dp"
-		android:layout_height="@dimen/dimen_38dp"
+		android:layout_width="@dimen/pin_digit_box"
+		android:layout_height="@dimen/pin_digit_box"
 		android:layout_gravity="center_horizontal"
 		android:background="@drawable/shape_view_country_phone_selector_bg" />
 </FrameLayout>

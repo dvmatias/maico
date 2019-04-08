@@ -27,6 +27,8 @@
     <dimen name="dimen_60dp">60dp</dimen>
     <dimen name="dimen_64dp">64dp</dimen>
 
+    <dimen name="pin_digit_box">38dp</dimen>
+
     <integer name="one">1</integer>
     <integer name="two">2</integer>
     <integer name="three">3</integer>
