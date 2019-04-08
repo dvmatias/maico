@@ -62,8 +62,7 @@ class RegisterPhoneActivity : BaseActivity(),
 
 		// Construct a default country object.
 		setSelectedCountry(Country())
-//		goToEnterPhoneScreen()
-		goToValidatePhoneScreen()
+		goToEnterPhoneScreen()
 	}
 
 	override fun onBackPressed() {
@@ -76,7 +75,7 @@ class RegisterPhoneActivity : BaseActivity(),
 
 	override fun onResume() {
 		super.onResume()
-//		showSelectedCountry()
+		showSelectedCountry()
 	}
 
 	/**
